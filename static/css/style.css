@@ -1,0 +1,44 @@
+/* body {
+    background-color: #009999;
+} */
+/* Navbar */
+.my-navbar {
+    background-color: #404040;
+}
+
+.logo {
+    width: 230px;
+    height: 64px;
+}
+
+.nav-button-list {
+    color: #ff6600;
+}
+
+.nav-button-signout {
+    color: #fff;
+    margin-top: 0px;
+}
+
+.nav-button-list-active {
+    border: 2px solid #ff6600; 
+    border-radius: 5px;
+}
+
+.nav-button-signout-active {
+    border: 2px solid #fff; 
+    border-radius: 5px;
+}
+
+i.icon {
+    margin: 0;
+    padding: 0;
+}
+
+
+@media screen and (max-width:768px) {
+   .logo {
+    width: 187px;
+    height: 56px;
+    }
+}

@@ -16,9 +16,9 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/get_books')
-def get_books():
-    return render_template("get_books.html", books=mongo.db.books.find())
+@app.route('/my_page')
+def my_page():
+    return render_template("my_page.html", books=mongo.db.books.find())
 
 
 if __name__ == '__main__':
