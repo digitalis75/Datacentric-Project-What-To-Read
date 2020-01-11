@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<!-- Add list button -->
+    <div class="row">
+        <a class="waves-effect waves-light btn right lists-action-btn"><i class="material-icons left">add</i>New List</a>
+    </div>
+    <!-- Heading -->
+    <h3 class= "center">My Lists</h3>
+    <p class= "center"><small>Note: your default 'Books I liked' list can't be renamed or deleted.</small></p>
+        <!-- Searching for list names in MongoDB -->
+    {% for list in lists %}
+        <!-- For default list -->
+        {% if list.list_name == "Books I Liked" %}
+            <div class="row lists-list-row">
+                <div class="col">
+                    <a href="#!" class="list-item">{{ list.list_name }}</a>
+                </div>
+            </div>
+        <!-- For other lists -->
+        {% else %}
+            <div class="row lists-list-row">
+                <div class="col m8">
+                    <a href="#!" class="list-item">{{ list.list_name }}</a>
+                </div>
+                <!-- Action buttons -->
+                <a href= "" class="waves-effect waves-light btn lists-action-btn">Rename</a>                                       
+                <a href= "" class="waves-effect waves-light btn lists-action-btn">Delete</a>                       
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
