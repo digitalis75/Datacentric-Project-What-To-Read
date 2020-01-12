@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
@@ -24,6 +24,12 @@ def my_page():
 @app.route('/my_lists')
 def my_lists():
     return render_template("my_lists.html", lists=mongo.db.lists.find())
+
+
+@app.route('/insert_list', methods=['POST'])
+def insert_list():
+    mongo.db.lists.insert_one({'list_name': request.form.get('list_name')})
+    return redirect(url_for('my_lists'))
 
 
 @app.route('/add_list')
