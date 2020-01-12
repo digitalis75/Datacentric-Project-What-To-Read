@@ -1,7 +1,8 @@
 body {
     background-color: #f2f2f2;
 }
-/* Navbar */
+
+/* ------------ Navbar ----------- */
 .my-navbar {
     background-color: #404040;
 }
@@ -30,16 +31,17 @@ body {
     border-radius: 5px;
 }
 
-/* My lists */
+/* --------- My lists --------------- */
 
 .addlist-btn-row {
     margin: 15px 0;
 }
 
 .action-btn,
+.action-btn-back,
 .list-action-btn {
     padding: 0 10px;
-    margin-right: 10px;
+    margin: 0 5px;
     text-transform: capitalize;
 }
 
@@ -84,17 +86,36 @@ body {
     color: #ff6600;
 }
 
+/* --------- Add list --------------- */
+.action-btn-back {
+    background-color: #fff;
+    color: #ffab40;
+}
 
+.action-btn-back-active {
+     color: #fff;
+}
+
+.action-btn-submit {
+    padding: 0 10vw;
+}
+
+.addlist-form {
+    background-color: #fff;
+    height: 100px;
+    border: 1px solid #d9d9d9; 
+    border-radius: 5px;
+    margin: 25px 0;
+}
+
+.material-icons.faded {
+    color: #d9d9d9;
+}
+
+/* --------- Responsive ---------- */
 @media screen and (max-width:768px) {
    .logo {
     width: 187px;
     height: 56px;
     }
 }
-/* 
-@media #{$small-and-down} {
-    .logo {
-    width: 187px;
-    height: 56px;
-    }
-} */
