@@ -1,6 +1,6 @@
-/* body {
-    background-color: #009999;
-} */
+body {
+    background-color: #f2f2f2;
+}
 /* Navbar */
 .my-navbar {
     background-color: #404040;
@@ -11,7 +11,7 @@
     height: 64px;
 }
 
-.nav-button-list {
+.nav-button-mylists {
     color: #ff6600;
 }
 
@@ -20,19 +20,68 @@
     margin-top: 0px;
 }
 
-.nav-button-list-active {
-    border: 2px solid #ff6600; 
+.nav-button-mylists-active {
+    border: 1px solid #ff6600; 
     border-radius: 5px;
 }
 
 .nav-button-signout-active {
-    border: 2px solid #fff; 
+    border: 1px solid #fff; 
     border-radius: 5px;
 }
 
-i.icon {
-    margin: 0;
-    padding: 0;
+/* My lists */
+
+.addlist-btn-row {
+    margin: 15px 0;
+}
+
+.action-btn,
+.list-action-btn {
+    padding: 0 10px;
+    margin-right: 10px;
+    text-transform: capitalize;
+}
+
+.action-btn {
+   background-color: #ffab40; 
+}
+
+.action-btn-active {
+    color: #fff;
+}
+
+.list-action-btn {
+    background-color: #fff;
+    color: grey;
+}
+
+.list-action-btn-active {
+    color: #fff;
+}
+
+.faded-text {
+    color: grey;
+}
+
+.lists-list-row {
+    background-color: #fff; 
+    height: 70px;   
+    border: 1px solid #d9d9d9; 
+    border-radius: 5px; 
+}
+
+.lists-list-row-active {
+    background-color: #fff6e6;
+}
+
+.list-item {   
+    color: #424242;
+    font-size: 16px;
+}
+
+.list-item-active {
+    color: #ff6600;
 }
 
 
@@ -42,3 +91,10 @@ i.icon {
     height: 56px;
     }
 }
+/* 
+@media #{$small-and-down} {
+    .logo {
+    width: 187px;
+    height: 56px;
+    }
+} */
