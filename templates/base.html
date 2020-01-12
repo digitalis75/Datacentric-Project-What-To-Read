@@ -19,7 +19,7 @@
     <!--Materialize navbar and dropdown menu-->
     <nav>
         <div class="nav-wrapper my-navbar">
-            <a href="#!" class="brand-logo center"><img class= "logo" src="static/images/logo.jpg" alt="logo"></a>
+            <a href="#!" class="brand-logo center"><img class= "logo" src="{{url_for('static', filename='images/logo.jpg')}}" alt="logo"></a>
             <a href="#" data-activates='dropdown1' class="dropdown-button button-collapse"><i class="material-icons icon">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-teal btn-flat nav-button-mylists">My Lists</a>
