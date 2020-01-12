@@ -26,6 +26,11 @@ def my_lists():
     return render_template("my_lists.html", lists=mongo.db.lists.find())
 
 
+@app.route('/add_list')
+def add_list():
+    return render_template("add_list.html")
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
