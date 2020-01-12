@@ -37,6 +37,13 @@ def add_list():
     return render_template("add_list.html")
 
 
+@app.route('/edit_list/<list_id>')
+def edit_list(list_id):
+    return render_template("edit_list.html",
+                           list=mongo.db.lists.find_one(
+                               {'_id': ObjectId(list_id)}))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
