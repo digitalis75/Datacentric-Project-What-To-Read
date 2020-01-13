@@ -44,6 +44,14 @@ def edit_list(list_id):
                                {'_id': ObjectId(list_id)}))
 
 
+@app.route('/update_list/<list_id>', methods=['POST'])
+def update_list(list_id):
+    mongo.db.lists.update_one(
+        {'_id': ObjectId(list_id)},
+        {'$set': {'list_name': request.form.get('list_name')}})
+    return redirect(url_for('my_lists'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
