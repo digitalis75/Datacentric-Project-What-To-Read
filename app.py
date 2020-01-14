@@ -18,12 +18,14 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/my_page')
 def my_page():
-    return render_template("my_page.html", books=mongo.db.books.find())
+    return render_template("my_page.html", title='My Page',
+                           books=mongo.db.books.find())
 
 
 @app.route('/my_lists')
 def my_lists():
-    return render_template("my_lists.html", lists=mongo.db.lists.find())
+    return render_template("my_lists.html", title='My Lists',
+                           lists=mongo.db.lists.find())
 
 
 @app.route('/insert_list', methods=['POST'])
@@ -34,12 +36,12 @@ def insert_list():
 
 @app.route('/add_list')
 def add_list():
-    return render_template("add_list.html")
+    return render_template("add_list.html", title='Add List')
 
 
 @app.route('/edit_list/<list_id>')
 def edit_list(list_id):
-    return render_template("edit_list.html",
+    return render_template("edit_list.html", title='Edit List',
                            list=mongo.db.lists.find_one(
                                {'_id': ObjectId(list_id)}))
 
