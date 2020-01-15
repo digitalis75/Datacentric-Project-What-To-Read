@@ -1,31 +1,27 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-<div class="container">
-    <!-- Back to Lists button -->
-    <div class="row addlist-btn-row">
-        <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-light btn action-btn-back left"><i class="material-icons left">arrow_back_ios</i>Back to Lists</a>
-    </div>
-    <!---- Heading ------>
-    <h3 class= "center">Edit List</h3>
-    <!---- Form ------->
-    <div class="row">
-        <form action= "{{ url_for('update_list', list_id=list._id) }}" method="POST" class="addlist-form col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons faded prefix">mode_edit</i>
-                    <input placeholder="List Name, e.g. Wish List" id="list_name" name="list_name" type="text" class="validate valign-wrapper" value= "{{ list.list_name }}">
-                </div>
+<!-- Back to Lists button -->
+<div class="row addlist-btn-row">
+    <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-light btn action-btn-back left"><i class="material-icons left">arrow_back_ios</i>Back to Lists</a>
+</div>
+
+<!---- Form ------->
+<div class="row">
+    <form action= "{{ url_for('update_list', list_id=list._id) }}" method="POST" class="addlist-form col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons faded prefix">mode_edit</i>
+                <input placeholder="List Name, e.g. Wish List" id="list_name" name="list_name" type="text" class="validate valign-wrapper" value= "{{ list.list_name }}">
             </div>
-             <!---- Submit button ------->
-            <div class="row center">
-                <button class="btn waves-effect waves-light action-btn action-btn-submit" type="submit" name="action">Update List
-                    <i class="material-icons left">playlist_add</i>
-                </button>
-            </div>
-        </form>
-    </div>
+        </div>
+            <!---- Submit button ------->
+        <div class="row center">
+            <button class="btn waves-effect waves-light action-btn action-btn-submit" type="submit" name="action">Update List
+                <i class="material-icons left">playlist_add</i>
+            </button>
+        </div>
+    </form>
 </div>
 
 {% endblock %}
