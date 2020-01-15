@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/my_page')
 def my_page():
-    return render_template("my_page.html", title='My Page',
+    return render_template("my_page.html", title='',
                            books=mongo.db.books.find())
 
 
@@ -58,6 +58,12 @@ def update_list(list_id):
 def delete_list(list_id):
     mongo.db.lists.delete_one({'_id': ObjectId(list_id)})
     return redirect(url_for('my_lists'))
+
+
+@app.route('/showlist/<list_id>')
+def showlist(list_id):
+    return render_template("show_list.html", list=mongo.db.lists.find_one(
+                               {'_id': ObjectId(list_id)}))
 
 
 if __name__ == '__main__':

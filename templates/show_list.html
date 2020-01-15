@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Back to Lists button -->
+<div class="row">
+    <div class="col m10 addlist-btn-row">
+        <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-light btn action-btn-back left"><i class="material-icons left">arrow_back_ios</i>Back to Lists</a>
+    </div>    
+    
+    {% if list.list_name != "Books I Liked" %}
+        <div class= "col m2 addlist-btn-row">
+            <a href= "{{ url_for('edit_list', list_id=list._id) }}" class="waves-effect waves-light btn list-action-btn"><i class="material-icons">edit</i></a>                                       
+            <a href= "{{ url_for('delete_list', list_id=list._id) }}" class="waves-effect waves-light btn list-action-btn"><i class="material-icons">delete</i></a>
+        </div>
+    {% endif %}
+</div>
+    
+{% endblock %}
