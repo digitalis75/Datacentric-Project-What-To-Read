@@ -69,8 +69,12 @@
                 belowOrigin: false, // Displays dropdown below the button
                 alignment: 'left', // Displays dropdown with edge aligned to the left of button
                 stopPropagation: false // Stops event propagation
-                }
-            );
+            });
+
+            //Materialize select element activation
+            $('select').material_select();
+        
+
             //Jquery for navbar buttons
             $(".nav-button-mylists").hover(function(){
                 $(this).toggleClass("nav-button-mylists-active");
