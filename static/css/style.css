@@ -32,6 +32,9 @@ body {
 }
 
 /* --------- My lists --------------- */
+.col.s10.m11 {
+    margin: 0;
+}
 
 .addlist-btn-row {
     margin: 15px 0;
