@@ -21,16 +21,6 @@ body {
     margin-top: 0px;
 }
 
-.nav-button-mylists-active {
-    border: 1px solid #ff6600; 
-    border-radius: 5px;
-}
-
-.nav-button-signout-active {
-    border: 1px solid #fff; 
-    border-radius: 5px;
-}
-
 /* --------- My lists --------------- */
 .col.s10.m11 {
     margin: 0;
