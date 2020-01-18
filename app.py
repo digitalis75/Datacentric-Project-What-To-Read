@@ -18,7 +18,9 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/my_page')
 def my_page():
-    return render_template("my_page.html", title='My Page')
+    return render_template("my_page.html",
+                           title='Discover books you will love!',
+                           books=mongo.db.books.find().limit(2))
 
 
 @app.route('/my_lists')

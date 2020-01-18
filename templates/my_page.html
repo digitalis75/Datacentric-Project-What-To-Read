@@ -1,7 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
+<!---- Form ------->
+<div class="row">
+    <form action= "" method="POST" class="search-form col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons faded prefix">search</i>
+                <input placeholder="Enter Book Title or Author" id="search" name="search" type="text" class="validate valign-wrapper">
+            </div>
+        </div>
+        <!---- Submit button ------->
+        <div class="row center">
+            <button class="btn waves-effect waves-light action-btn action-btn-submit" type="submit" name="action">Search for Books
+                <i class="material-icons left">search</i>
+            </button>
+        </div>
+    </form>
+    <!---- Book Card ------->
     {% for book in books %}
-        {{ book.title }}
-        {{ book.author }}
+        <div class="col s12 m6">  
+            <div class="card horizontal show_card">
+                <div class="card-image">
+                    <img class="show_card_image" src="{{ book.image_url }}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <h6><strong>{{ book.title }}</strong></h6>
+                        <h6><i> by {{ book.author }}</i></h6>
+                        <p>Genre:<a href="#"> {{ book.genre_name }}</a></p>
+                        <p></p>
+                    </div>
+                    <div class="card-action card-link">
+                        <a href="{{ book.amazon }}" target="_blank">Info/Buy</a>
+                        <a  href="">Add To List</a>                        
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
+</div>
 {% endblock %}

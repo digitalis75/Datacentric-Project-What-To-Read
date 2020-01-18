@@ -21,6 +21,15 @@ body {
     margin-top: 0px;
 }
 
+/* --------- My Page --------------- */
+.show_card {
+    height: 220px;
+}
+
+.card-link {
+    font-size: 12px;
+}
+
 /* --------- My lists --------------- */
 .col.s10.m11 {
     margin: 0;
@@ -94,12 +103,17 @@ body {
 }
 
 .addlist-form,
-.addbook-form {
+.addbook-form,
+.search-form  {
     background-color: #fff;
     height: 170px;
     border: 1px solid #d9d9d9; 
     border-radius: 5px;
     margin: 25px 0;
+}
+
+.search-form {
+   border: 1px solid #ffab40;  
 }
 
 .material-icons.faded {
