@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
@@ -9,10 +9,21 @@ if path.exists("env.py"):
 
 
 app = Flask(__name__)
-app.config["MONGO_DBNAME"] = 'task_manager'
+app.secret_key = "SECRET"
+
+app.config["MONGO_DBNAME"] = 'what_to_read'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI", 'mongodb://localhost')
 
 mongo = PyMongo(app)
+
+mongo.db.books.create_index(
+    [
+        ("title", "text"),
+        ("author", "text"),
+        ("genre_name", "text"),
+        ("image_url", "text"),
+        ("amazon", "text")
+    ])
 
 
 @app.route('/')
@@ -21,6 +32,16 @@ def my_page():
     return render_template("my_page.html",
                            title='Discover books you will love!',
                            books=mongo.db.books.find().limit(2))
+
+
+@app.route('/search_results', methods=['POST'])
+def search_results():
+    search_word = request.form["search_word"]
+    search_results = mongo.db.books.find(
+                {"$text": {"$search": search_word}})
+    return render_template("get_books.html", title='Search Results',
+                           search_results=search_results,
+                           search_word=search_word)
 
 
 @app.route('/my_lists')
@@ -63,7 +84,7 @@ def delete_list(list_id):
 
 @app.route('/showlist/<list_id>')
 def showlist(list_id):
-    return render_template("show_list.html", lists=mongo.db.lists.find_one(
+    return render_template("show_list.html", list=mongo.db.lists.find_one(
                                {'_id': ObjectId(list_id)}))
 
 

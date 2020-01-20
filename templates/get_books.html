@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
 {% block content %}
-    {% for book in books %}
-        {{ book.title }}
-        {{ book.author }}
+<div class="row">
+     <!---- Book Card ------->  
+    {% for result in search_results %}
+    <div class="col s12 m6">  
+        <div class="card horizontal show_card">
+            <div class="card-image">
+                <img class="show_card_image" src="{{ result.image_url }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h6><strong>{{ result.title }}</strong></h6>
+                    <h6><i> by {{ result.author }}</i></h6>
+                    <p>Genre:<a href="#"> {{ result.genre_name }}</a></p>
+                    <p></p>
+                </div>
+                <div class="card-action card-link">
+                    <a href="{{ result.amazon }}" target="_blank">Info/Buy</a>
+                    <a  class="waves-effect waves-light btn modal-trigger" href="">Add To List</a>                        
+                </div>
+            </div>
+        </div>
+    </div>    
     {% endfor %}
+ </div>
 {% endblock %}
-</body>
-</html>
