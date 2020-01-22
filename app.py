@@ -40,6 +40,7 @@ def search_results():
     search_results = mongo.db.books.find(
                 {"$text": {"$search": search_word}})
     return render_template("get_books.html", title='Search Results',
+                           lists=list(mongo.db.lists.find()),
                            search_results=search_results,
                            search_word=search_word)
 
