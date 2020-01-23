@@ -16,47 +16,19 @@
             </button>
         </div>
     </form>
-    <!---- Book Card ------->
-    {% for book in books %}
-        <div class="col s12 m6">  
-            <div class="card horizontal show_card">
-                <div class="card-image">
-                    <img class="show_card_image" src="{{ book.image_url }}">
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <h6><strong>{{ book.title }}</strong></h6>
-                        <h6><i> by {{ book.author }}</i></h6>
-                        <p>Genre:<a href="#"> {{ book.genre_name }}</a></p>
-                        <p></p>
-                    </div>
-                    <div class="card-action card-link">
-                        <a href="{{ book.amazon }}" target="_blank">Info/Buy</a>
-                        <!-- Modal Trigger -->
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add To List</a>                        
-                         <!-- Modal Structure -->
-                        <div id="modal1" class="modal modal-fixed-footer">
-                            <div class="modal-content">
-                                <p>Add or Remove <strong>{{ book.title }}</strong> by <strong>{{ book.author }}</strong> to your lists</p>
-                                <!-- Lists checkboxes -->                               
-                                <div class="form-check">
-                                {% for list in Lists %}
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">                              
-                                        {{ list.list_name }}                           
-                                    </label>
-                                {% endfor %}
-                                </div>                 
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-                            </div>
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
-        </div>
+</div>
+   
+    <!---- Genres ------->
+<div class="row">    
+    <div class= "row center header-small">
+        <h4 class= "">Search by Genre</h4>
+    </div>
+    {% for genre in genres %}
+    <div class="col s12 m3">
+        <div class="row center">
+            <a href= "{{ url_for('books_by_genre', genre_id=genre._id) }}" class="waves-effect waves-light btn action-btn-mypage" >{{ genre.genre_name }}</a>
+        </div>   
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

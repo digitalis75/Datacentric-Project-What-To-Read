@@ -22,12 +22,23 @@ body {
 }
 
 /* --------- My Page --------------- */
+
 .show_card {
     height: 220px;
 }
 
 .card-link {
     font-size: 12px;
+}
+
+.header-small {
+    color: #ffab40;
+}
+
+/* ---------Books by genre --------------- */
+.col.s12.m6 {
+  margin: 0;
+  padding: 0 5px;  
 }
 
 /* --------- My lists --------------- */
@@ -41,6 +52,7 @@ body {
 
 .action-btn,
 .action-btn-back,
+.action-btn-mypage,
 .list-action-btn {
     padding: 0 10px;
     margin: 0 5px;
@@ -49,6 +61,12 @@ body {
 
 .action-btn {
    background-color: #ffab40; 
+}
+
+
+.action-btn-mypage {
+    background-color: #fff;
+    color: #404040;
 }
 
 .action-btn-active {

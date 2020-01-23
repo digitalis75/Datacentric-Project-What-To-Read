@@ -9,7 +9,7 @@ if path.exists("env.py"):
 
 
 app = Flask(__name__)
-app.secret_key = "SECRET"
+app.secret_key = os.getenv("SECRET")
 
 app.config["MONGO_DBNAME"] = 'what_to_read'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI", 'mongodb://localhost')
@@ -31,7 +31,7 @@ mongo.db.books.create_index(
 def my_page():
     return render_template("my_page.html",
                            title='Discover books you will love!',
-                           books=mongo.db.books.find().limit(2))
+                           genres=mongo.db.genres.find().sort("genre_name", 1))
 
 
 @app.route('/search_results', methods=['POST'])
@@ -43,6 +43,15 @@ def search_results():
                            lists=list(mongo.db.lists.find()),
                            search_results=search_results,
                            search_word=search_word)
+
+
+@app.route('/books_by_genre/<genre_id>', methods=['GET', 'POST'])
+def books_by_genre(genre_id):
+    return render_template("books_by_genre.html", title='Search Results',
+                           books=mongo.db.books.find(),
+                           genre=mongo.db.genres.find_one(
+                               {'_id': ObjectId(genre_id)}),
+                           lists=list(mongo.db.lists.find()))
 
 
 @app.route('/my_lists')

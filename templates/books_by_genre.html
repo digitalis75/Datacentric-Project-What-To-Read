@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class= "row center header-small">
+        <h5 >Books with subject: {{ genre.genre_name }}</h5>
+    </div>
+      <!---- Book Card ------->  
+    {% for book in books %}
+        {% if book.genre_name == genre.genre_name %}
+    <div class="col s12 m6">  
+        <div class="card horizontal show_card">
+            <div class="card-image">
+                <img class="show_card_image" src="{{ book.image_url }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h6><strong>{{ book.title }}</strong></h6>
+                    <h6><i> by {{ book.author }}</i></h6>
+                    <p>Genre:<a href="#"> {{ book.genre_name }}</a></p>
+                    <p></p>
+                </div>
+                <div class="card-action card-link">
+                    <a href="{{ book.amazon }}" target="_blank">Info/Buy</a>
+                   <!-- Modal Trigger -->
+                        <a id="{{book._id}}" class="waves-effect waves-light btn modal-trigger" href="#modal_{{ book._id }}">Add To List</a>                        
+                         <!-- Material Modal Structure -->                     
+                        <div id="modal_{{ book._id }}" class="modal modal-fixed-footer">
+                            <div class="modal-content">                          
+                                <p>Add or Remove <strong>{{ book.title }}</strong> by <strong>{{ book.author }}</strong> to your lists</p>                               
+                                <!--Material Lists checkboxes --> 
+                                {% for list in lists %}                            
+                                <div class="form-check">   
+                                    <input class="form-check-input" type="checkbox" name= "" value="{{ list.list_name }}" id="{{ list.list_name }}_{{ book._id }}">
+                                    <label class="form-check-label" for="{{ list.list_name }}_{{ book._id }}">                              
+                                        {{ list.list_name }}                           
+                                    </label>                            
+                                </div>
+                                {% endfor %}                 
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
