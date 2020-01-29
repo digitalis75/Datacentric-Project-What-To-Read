@@ -3,10 +3,10 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
+from flask_paginate import Pagination, get_page_parameter
 
 if path.exists("env.py"):
     import env
-
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET")
@@ -34,15 +34,37 @@ def my_page():
                            genres=mongo.db.genres.find().sort("genre_name", 1))
 
 
-@app.route('/search_results', methods=['POST'])
+@app.route('/search_results', methods=['GET'])
 def search_results():
-    search_word = request.form["search_word"]
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    per_page = 4
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    # Search by word
+    search_word = request.args.get("search_word")
     search_results = mongo.db.books.find(
-                {"$text": {"$search": search_word}})
+                {"$text":
+                    {"$search": search_word}}).sort('_id', 1)\
+                                              .skip((page-1)*per_page)\
+                                              .limit(per_page)
+    # Total of search results
+    total = search_results.count()
+    # Pagination
+    pagination = Pagination(page=page, per_page=per_page,
+                            total=total, search=search,
+                            search_results=search_results,
+                            bs_version=4,
+                            css_framework='foundation',
+                            record_name='results')
+
     return render_template("get_books.html", title='Search Results',
                            lists=list(mongo.db.lists.find()),
                            search_results=search_results,
-                           search_word=search_word)
+                           search_word=search_word,
+                           pagination=pagination,
+                           total=total)
 
 
 @app.route('/books_by_genre/<genre_id>', methods=['GET', 'POST'])
@@ -94,7 +116,8 @@ def delete_list(list_id):
 
 @app.route('/showlist/<list_id>')
 def showlist(list_id):
-    return render_template("show_list.html", list=mongo.db.lists.find_one(
+    return render_template("show_list.html",
+                           list=mongo.db.lists.find_one(
                                {'_id': ObjectId(list_id)}))
 
 

@@ -45,7 +45,6 @@ div.card-action.card-link {
     background-color: #ffab40;
 }
 
-
 .header-small {
     color: #ffab40;
 }
@@ -54,6 +53,26 @@ div.card-action.card-link {
 .col.s12.m6 {
   margin: 0;
   padding: 0 5px;  
+}
+
+
+/* ---------Pagination ----------- */
+/* ----from flask-paginate documentation-- */
+.pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    /* customized background-color */
+    background: #ffab40;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
 }
 
 /* --------- My lists --------------- */

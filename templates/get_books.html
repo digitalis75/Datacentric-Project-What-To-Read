@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+
+    {% if total > 1 %}         <!--Ignore pagination if you get no results-->
+        {{ pagination.info }}
+    {% endif %}     
+    {{ pagination.links }}
+
 <div class="row">
      <!---- Book Card ------->  
     {% for result in search_results %}
@@ -43,4 +49,5 @@
         </div>
     {% endfor %}
 </div>
+{{ pagination.links }}
 {% endblock %}
