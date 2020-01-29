@@ -5,6 +5,11 @@
     <div class= "row center header-small">
         <h5 >Books with subject: {{ genre.genre_name }}</h5>
     </div>
+    
+    {% if total > 1 %}         <!--Ignore pagination if you get no results-->
+        {{ pagination.info }}
+    {% endif %}     
+    {{ pagination.links }}
       <!---- Book Card ------->  
     {% for book in books %}
         {% if book.genre_name == genre.genre_name %}
@@ -49,4 +54,5 @@
         {% endif %}
     {% endfor %}
 </div>
+{{ pagination.links }}
 {% endblock %}

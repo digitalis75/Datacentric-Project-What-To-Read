@@ -69,11 +69,30 @@ def search_results():
 
 @app.route('/books_by_genre/<genre_id>', methods=['GET', 'POST'])
 def books_by_genre(genre_id):
+    per_page = 4
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    genre = mongo.db.genres.find_one(
+                               {'_id': ObjectId(genre_id)})
+    books = mongo.db.books.find({'genre_name': genre["genre_name"]})\
+        .sort('_id', 1)\
+        .skip((page-1)*per_page)\
+        .limit(per_page)
+
+    # Total of search results
+    total = books.count()
+    # Pagination
+    pagination = Pagination(page=page, per_page=per_page,
+                            total=total,
+                            books=books,
+                            bs_version=4,
+                            css_framework='foundation',
+                            record_name='results')
     return render_template("books_by_genre.html", title='Search Results',
-                           books=mongo.db.books.find(),
                            genre=mongo.db.genres.find_one(
                                {'_id': ObjectId(genre_id)}),
-                           lists=list(mongo.db.lists.find()))
+                           lists=list(mongo.db.lists.find()),
+                           pagination=pagination,
+                           total=total, books=books)
 
 
 @app.route('/my_lists')
