@@ -21,15 +21,30 @@ body {
     margin-top: 0px;
 }
 
-/* --------- My Page --------------- */
+/* --------- Get books --------------- */
 
 .show_card {
     height: 220px;
 }
 
-.card-link {
-    font-size: 12px;
+div.card-action.card-link {
+    padding: 5px;
 }
+
+.btn-small {
+    height: 24px;
+    width: 60px;
+    line-height: 24px;
+    margin: 5px;
+    padding: 0px;
+    text-transform: capitalize;
+    font-size: 10px;
+}
+
+.info-btn {
+    background-color: #ffab40;
+}
+
 
 .header-small {
     color: #ffab40;

@@ -16,9 +16,9 @@
                     <p></p>
                 </div>
                 <div class="card-action card-link">
-                    <a href="{{ result.amazon }}" target="_blank">Info/Buy</a>
+                    <a class="waves-effect waves-light btn btn-small info-btn" href="{{ result.amazon }}" target="_blank">Info/Buy</a>
                    <!-- Modal Trigger -->
-                        <a id="{{result._id}}" class="waves-effect waves-light btn modal-trigger" href="#modal_{{ result._id }}">Add To List</a>                        
+                        <a id="{{result._id}}" class="waves-effect waves-light btn btn-small modal-trigger" href="#modal_{{ result._id }}">Add To List</a>                        
                          <!-- Material Modal Structure -->                     
                         <div id="modal_{{ result._id }}" class="modal modal-fixed-footer">
                             <div class="modal-content">                          
