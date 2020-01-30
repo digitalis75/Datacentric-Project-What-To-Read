@@ -7,6 +7,14 @@
     {{ pagination.links }}
 
 <div class="row">
+    <div class= "row header-small">
+        <h5 >Books with search word: <i style= "color: #404040; font-size: 18px">"{{ search_word }}"</i></h5>
+    </div>
+
+    {% if total == 0 %}
+        <h5>No Results Found</h5>
+    {% endif %}
+
      <!---- Book Card ------->  
     {% for result in search_results %}
     <div class="col s12 m6">  
