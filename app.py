@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
@@ -27,13 +27,56 @@ mongo.db.books.create_index(
 
 
 @app.route('/')
+@app.route('/index')
+def index():
+    return render_template('login.html', title='Log In')
+
+
 @app.route('/my_page')
 def my_page():
     return render_template("my_page.html",
                            title='Discover books you will love!',
                            genres=mongo.db.genres.find().sort("genre_name", 1))
 
+# User login
+@app.route('/login', methods=['POST'])
+def login():
+    login_user = mongo.db.users.find_one({'username': request.form['username']})
+    # Log in existing user
+    if login_user:
+        session['username'] = request.form['username']
+        flash('Welcome back! You are logged in.', 'success')
+        return redirect(url_for('my_page'))
+    else:
+        flash('No account found for that email address.\
+        Please, Try again or Sign Up.', 'error')
+        return render_template('login.html', title='Sign In')
 
+# Register user
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one(
+            {'username': request.form['username']})
+
+        if existing_user is None:
+            users.insert({'username': request.form['username']})
+            session['username'] = request.form['username']
+            return redirect(url_for('my_page'))
+
+        flash('That username already exists! Try again or Sign In', 'error')
+        return render_template('register.html', title='Sign Up')
+
+# Log out
+@app.route('/logout')
+def logout():
+    # Clear the session
+    session.clear()
+    flash('You were logged out!', 'success')
+    return redirect(url_for('index'))
+
+# Show search results by word
 @app.route('/search_results', methods=['GET'])
 def search_results():
     search = False
@@ -66,7 +109,7 @@ def search_results():
                            pagination=pagination,
                            total=total)
 
-
+# Show search results by genre
 @app.route('/books_by_genre/<genre_id>', methods=['GET', 'POST'])
 def books_by_genre(genre_id):
     per_page = 4
@@ -94,31 +137,31 @@ def books_by_genre(genre_id):
                            pagination=pagination,
                            total=total, books=books)
 
-
+# Display lists
 @app.route('/my_lists')
 def my_lists():
     return render_template("my_lists.html", title='My Lists',
                            lists=mongo.db.lists.find())
 
-
+# Insert new list
 @app.route('/insert_list', methods=['POST'])
 def insert_list():
     mongo.db.lists.insert_one({'list_name': request.form.get('list_name')})
     return redirect(url_for('my_lists'))
 
-
+# Add new list form
 @app.route('/add_list')
 def add_list():
     return render_template("add_list.html", title='Add List')
 
-
+# Edit list form
 @app.route('/edit_list/<list_id>')
 def edit_list(list_id):
     return render_template("edit_list.html", title='Edit List',
                            list=mongo.db.lists.find_one(
                                {'_id': ObjectId(list_id)}))
 
-
+# Send updated list to MongoDB
 @app.route('/update_list/<list_id>', methods=['POST'])
 def update_list(list_id):
     mongo.db.lists.update_one(
@@ -126,7 +169,7 @@ def update_list(list_id):
         {'$set': {'list_name': request.form.get('list_name')}})
     return redirect(url_for('my_lists'))
 
-
+# Delete list from database
 @app.route('/delete_list/<list_id>')
 def delete_list(list_id):
     mongo.db.lists.delete_one({'_id': ObjectId(list_id)})
