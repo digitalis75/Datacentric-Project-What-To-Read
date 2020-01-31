@@ -21,6 +21,23 @@ body {
     margin-top: 0px;
 }
 
+/* --------Alerts---------- */
+.alert-success {
+    background-color: #a7ffeb;
+    color: #404040;
+}
+
+.alert-danger {
+    background-color: #fab3ba;
+    color: #404040;
+}
+
+.alert-message {
+    margin: 0;
+    padding: 10px 0;
+}
+
+
 /* --------- Get books --------------- */
 
 .show_card {
@@ -156,7 +173,9 @@ div.card-action.card-link {
 
 .addlist-form,
 .addbook-form,
-.search-form  {
+.search-form,
+/* .register-form, */
+.login-form  {
     background-color: #fff;
     height: 170px;
     border: 1px solid #d9d9d9; 
@@ -176,6 +195,23 @@ div.card-action.card-link {
 .addbook-form {
     height: 470px; 
  }
+
+ /* ---------- Register and Login Forms---------- */
+/* .register-form {
+    height: 270px; 
+ } */
+
+.login-form {
+    height: 220px;
+}
+
+.signin-text {
+    color: #404040;
+}
+
+.signin-link {
+    color: #ff6600;
+}
 
 /* --------- Responsive ---------- */
 @media screen and (max-width:768px) {
