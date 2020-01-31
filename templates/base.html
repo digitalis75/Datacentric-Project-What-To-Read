@@ -20,34 +20,39 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
 <body>
-    <!--Materialize navbar and dropdown menu-->
-    <nav>
-        <div class="nav-wrapper my-navbar">
-            <a href="{{ url_for('my_page') }}" class="brand-logo center"><img class= "logo" src="{{url_for('static', filename='images/logo.jpg')}}" alt="logo"></a>
-            <a href="#" data-activates='dropdown1' class="dropdown-button button-collapse"><i class="material-icons icon">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <a href= "{{ url_for('my_page') }}" class="waves-effect waves-teal btn-flat nav-button-mylists">Search</a>
-                <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-teal btn-flat nav-button-mylists">My Lists</a>
-                <a class="waves-effect waves-teal btn-flat nav-button-signout">Sign Out</a>
-            </ul>
-            <ul id='dropdown1' class='dropdown-content'>
-               <li><a href="" class=""> <i class="material-icons small">close</i></a></li>
-                <li><a href="{{ url_for('my_page') }}">Search<i class="material-icons">search</i></a></li>
-                <li><a href="{{ url_for('my_lists') }}">My Lists<i class="material-icons">list</i></a></li>
-                <li><a href="">Sign Out<i class="fas fa-sign-out-alt"></i></a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="container-fluid">
+        <!--Materialize navbar and dropdown menu-->    
+        <nav>
+            <div class="nav-wrapper my-navbar">
+                <a href="{{ url_for('my_page') }}" class="brand-logo center"><img class= "logo" src="{{url_for('static', filename='images/logo.jpg')}}" alt="logo"></a>
+                <a href="#" data-activates='dropdown1' class="dropdown-button button-collapse"><i class="material-icons icon">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <a href= "{{ url_for('my_page') }}" class="waves-effect waves-teal btn-flat nav-button-mylists">Search</a>
+                    <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-teal btn-flat nav-button-mylists">My Lists</a>
+                    <a href= "{{ url_for('logout') }}"class="waves-effect waves-teal btn-flat nav-button-signout">Sign Out</a>
+                </ul>
+                <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="" class=""> <i class="material-icons small">close</i></a></li>
+                    <li><a href="{{ url_for('my_page') }}">Search<i class="material-icons">search</i></a></li>
+                    <li><a href="{{ url_for('my_lists') }}">My Lists<i class="material-icons">list</i></a></li>
+                    <li><a href="{{ url_for('logout') }}">Sign Out<i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </div>    
+        </nav>
+    </div>
+
     <div class="container">
         <!---- Heading ------>
-        {% if title %}
-            <h3 class= "center">{{ title }}</h3>
-        {% else %}
-            <h3 class= "center">{{ list.list_name }}</h3>
-        {% endif %}
-        
-        {% block content %}
-        {% endblock %}
+        <div class= "row">
+            {% if title %}
+                <h3 class= "center">{{ title }}</h3>
+            {% else %}
+                <h3 class= "center">{{ list.list_name }}</h3>
+            {% endif %}
+            
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
 
     <!--Jquery-->
