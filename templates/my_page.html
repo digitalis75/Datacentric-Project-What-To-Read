@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <!----Search Form ------->
-<div class="row">
     <form action= "{{ url_for('search_results') }}" method="GET" class="search-form col s12">
-        <div class="row">
+        <div>
             <div class="input-field col s12">
                 <i class="material-icons faded prefix">search</i>
                 <input placeholder="Enter Book Title or Author" id="search" name="search_word" type="text" class="validate valign-wrapper">
@@ -16,10 +15,8 @@
             </button>
         </div>
     </form>
-</div>
    
     <!---- Genres ------->
-<div class="row">    
     <div class= "row center header-small">
         <h4>Search by Subject</h4>
     </div>
@@ -30,5 +27,4 @@
         </div>   
     </div>
     {% endfor %}
-</div>
 {% endblock %}
