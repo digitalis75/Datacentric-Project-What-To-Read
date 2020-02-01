@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import Flask, render_template, redirect, request,\
+                  url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
@@ -27,16 +28,21 @@ mongo.db.books.create_index(
 
 
 @app.route('/')
-@app.route('/index')
-def index():
-    return render_template('login.html', title='Log In')
-
-
 @app.route('/my_page')
 def my_page():
     return render_template("my_page.html",
                            title='Discover books you will love!',
                            genres=mongo.db.genres.find().sort("genre_name", 1))
+
+# Login form
+@app.route('/signin')
+def signin():
+    return render_template('login.html', title='Log In')
+
+# Registration form
+@app.route('/signup')
+def signup():
+    return render_template('register.html', title='Sign Up')
 
 # User login
 @app.route('/login', methods=['POST'])
@@ -49,8 +55,8 @@ def login():
         return redirect(url_for('my_page'))
     else:
         flash('No account found for that email address.\
-        Please, Try again or Sign Up.', 'error')
-        return render_template('login.html', title='Sign In')
+        Please, try again or Sign Up.', 'error')
+        return redirect(url_for('signin'))
 
 # Register user
 @app.route('/register', methods=['GET', 'POST'])
@@ -66,7 +72,7 @@ def register():
             return redirect(url_for('my_page'))
 
         flash('That username already exists! Try again or Sign In', 'error')
-        return render_template('register.html', title='Sign Up')
+        return redirect(url_for('signup'))
 
 # Log out
 @app.route('/logout')
@@ -74,7 +80,7 @@ def logout():
     # Clear the session
     session.clear()
     flash('You were logged out!', 'success')
-    return redirect(url_for('index'))
+    return redirect(url_for('my_page'))
 
 # Show search results by word
 @app.route('/search_results', methods=['GET'])

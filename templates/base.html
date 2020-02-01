@@ -28,14 +28,24 @@
                 <a href="#" data-activates='dropdown1' class="dropdown-button button-collapse"><i class="material-icons icon">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <a href= "{{ url_for('my_page') }}" class="waves-effect waves-teal btn-flat nav-button-mylists">Search</a>
+                    {%  if "username" in session %}
                     <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-teal btn-flat nav-button-mylists">My Lists</a>
-                    <a href= "{{ url_for('logout') }}"class="waves-effect waves-teal btn-flat nav-button-signout">Sign Out</a>
+                    <a href= "{{ url_for('logout') }}" class="waves-effect waves-teal btn-flat nav-button-signout">Sign Out</a>
+                    {% else %}
+                    <a href= "{{ url_for('signin') }}" class="waves-effect waves-teal btn-flat nav-button-signout">Sign In</a>
+                    <a href= "{{ url_for('signup') }}" class="waves-effect waves-teal btn-flat nav-button-mylists ">Sign Up</a>
+                    {%  endif %}
                 </ul>
                 <ul id='dropdown1' class='dropdown-content'>
                 <li><a href="" class=""> <i class="material-icons small">close</i></a></li>
                     <li><a href="{{ url_for('my_page') }}">Search<i class="material-icons">search</i></a></li>
+                    {%  if "username" in session %}
                     <li><a href="{{ url_for('my_lists') }}">My Lists<i class="material-icons">list</i></a></li>
                     <li><a href="{{ url_for('logout') }}">Sign Out<i class="fas fa-sign-out-alt"></i></a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('signin') }}">Sign In<i class="fas fa-sign-in-alt"></i></a></li>
+                    <li><a href="{{ url_for('signup') }}">Sign Up<i class="fas fa-user-plus"></i></a></li>
+                    {%  endif %}
                 </ul>
             </div>    
         </nav>
