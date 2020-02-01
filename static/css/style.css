@@ -62,8 +62,11 @@ div.card-action.card-link {
     background-color: #ffab40;
 }
 
-.header-small {
+div.row.header-small {
     color: #ffab40;
+    width: 100%;
+    padding: 0 8px;
+    margin: 10px 0;
 }
 
 /* ---------Books by genre --------------- */
@@ -73,12 +76,13 @@ div.card-action.card-link {
 }
 
 
-/* ---------Pagination ----------- */
-/* ----from flask-paginate documentation-- */
+/* ---------Pagination -----------
+----from flask-paginate documentation-- */
 .pagination-page-info {
     padding: .6em;
     padding-left: 0;
-    width: 40em;
+    /* customized width */
+    width: 100%;
     margin: .5em;
     margin-left: 0;
     font-size: 12px;
@@ -115,7 +119,8 @@ div.card-action.card-link {
 }
 
 
-.action-btn-mypage {
+.action-btn-mypage,
+.action-btn-modal_signin {
     background-color: #fff;
     color: #404040;
 }
@@ -167,14 +172,15 @@ div.card-action.card-link {
      color: #fff;
 }
 
-.action-btn-submit {
+.action-btn-submit,
+.action-btn-modal_signin {
     padding: 0 10vw;
+    margin-top: 15px;
 }
 
 .addlist-form,
 .addbook-form,
 .search-form,
-/* .register-form, */
 .login-form  {
     background-color: #fff;
     height: 170px;
@@ -197,10 +203,6 @@ div.card-action.card-link {
  }
 
  /* ---------- Register and Login Forms---------- */
-/* .register-form {
-    height: 270px; 
- } */
-
 .login-form {
     height: 220px;
 }
