@@ -6,7 +6,7 @@
     {% endif %}     
     {{ pagination.links }}
 
-<div class="row">
+<!-- <div class="row"> -->
     <div class= "row header-small">
         <h5 >Books with search word: <i style= "color: #404040; font-size: 18px">"{{ search_word }}"</i></h5>
     </div>
@@ -34,6 +34,7 @@
                    <!-- Modal Trigger -->
                         <a id="{{result._id}}" class="waves-effect waves-light btn btn-small modal-trigger" href="#modal_{{ result._id }}">Add To List</a>                        
                          <!-- Material Modal Structure -->                     
+                        {%  if "username" in session %}
                         <div id="modal_{{ result._id }}" class="modal modal-fixed-footer">
                             <div class="modal-content">                          
                                 <p>Add or Remove <strong>{{ result.title }}</strong> by <strong>{{ result.author }}</strong> to your lists</p>                               
@@ -51,11 +52,27 @@
                                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
                             </div>
                         </div>
+                        {% else %}
+                        <div id="modal_{{ result._id }}" class="modal modal-fixed-footer">
+                            <div class="modal-content center">                          
+                                <p>To Add <strong>{{ result.title }}</strong> by <strong>{{ result.author }}</strong> to a list please Sign In or Sign Up</p>                 
+                           
+                                <a href= "{{ url_for('signup') }}" class="btn waves-effect waves-light action-btn action-btn-submit" type="submit">Sign Up
+                                </a>
+                            
+                                <a href= "{{ url_for('signin') }}" class="btn waves-effect waves-light action-btn action-btn-modal_signin" type="submit">Sign In
+                                </a>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>  
                 </div>
             </div>
         </div>
     {% endfor %}
-</div>
+<!-- </div> -->
 {{ pagination.links }}
 {% endblock %}
