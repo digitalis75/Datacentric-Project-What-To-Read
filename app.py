@@ -67,7 +67,9 @@ def register():
             {'username': request.form['username']})
 
         if existing_user is None:
-            users.insert({'username': request.form['username']})
+            users.insert_one({'username': request.form['username'],
+                              'book_list': [{'id': 'Books I Liked',
+                                             'value': []}]})
             session['username'] = request.form['username']
             return redirect(url_for('my_page'))
 
