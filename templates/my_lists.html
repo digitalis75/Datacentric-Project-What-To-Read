@@ -2,23 +2,23 @@
 {% block content %}
 
 <p class= "faded-text center"><small>Note: your default <strong>'Books I liked'</strong> can't be renamed or deleted.</small></p>
+
 <!-- Add list button -->
 <div class="row addlist-btn-row">
     <a href= "{{ url_for('add_list') }}" class="waves-effect waves-light btn action-btn right"><i class="material-icons left">add</i>New List</a>
 </div>
 
-<!-- Searching for list names in MongoDB -->
-{% for list in lists %}
-    <div class="row lists-list-row valign-wrapper">
+<!-- Searching for list names in user's record -->
+{% for list in user.book_list %}
+<div class="row lists-list-row valign-wrapper">
         <div class="col s10 m11 ">
-            <a href="{{ url_for('showlist', list_id=list._id) }}" class="list-item">{{ list.list_name }}</a>
+            <a href="" class="list-item">{{ list.id }}</a>
         </div>
-        {% if list.list_name != "Books I Liked" %}       
+         {% if list.id != "Books I Liked" %}       
             <!-- Action buttons -->
-            <a href= "{{ url_for('edit_list', list_id=list._id) }}" class="waves-effect waves-light btn list-action-btn right tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit" ><i class="material-icons prefix">edit</i></a>                                       
-            <a href= "{{ url_for('delete_list', list_id=list._id) }}" class="waves-effect waves-light btn list-action-btn right tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete"><i class="material-icons prefix">delete</i></a>    
+            <a href= "" class="waves-effect waves-light btn list-action-btn right tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit" ><i class="material-icons prefix">edit</i></a>                                       
+            <a href= "" class="waves-effect waves-light btn list-action-btn right tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete"><i class="material-icons prefix">delete</i></a>    
         {% endif %}
-    </div>
+</div>
 {% endfor %}
-
 {% endblock %}

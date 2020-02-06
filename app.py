@@ -145,11 +145,13 @@ def books_by_genre(genre_id):
                            pagination=pagination,
                            total=total, books=books)
 
-# Display lists
+# Display user lists
 @app.route('/my_lists')
 def my_lists():
-    return render_template("my_lists.html", title='My Lists',
-                           lists=mongo.db.lists.find())
+    if session.get("username"):
+        username = session.get("username")
+        return render_template("my_lists.html", title='My Lists',
+                               user=mongo.db.users.find_one({'username': username}))
 
 # Insert new list
 @app.route('/insert_list', methods=['POST'])
