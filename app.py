@@ -154,8 +154,14 @@ def my_lists():
 # Insert new list
 @app.route('/insert_list', methods=['POST'])
 def insert_list():
-    mongo.db.lists.insert_one({'list_name': request.form.get('list_name')})
-    return redirect(url_for('my_lists'))
+    if session.get("username"):
+        username = session.get("username")
+        mongo.db.users.update({"username": username},
+                              {'$push':
+                              {'book_list':
+                               {'id': request.form.get('list_name'),
+                                'value': []}}})
+        return redirect(url_for('my_lists'))
 
 # Add new list form
 @app.route('/add_list')
