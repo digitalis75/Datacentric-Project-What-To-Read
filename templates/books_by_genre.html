@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class= "row header-small">
-        <h5 >Books with subject: <i>"{{ genre.genre_name.capitalize() }}"</i></h5>
+        <h5 >Books with category: <i>"{{ genre.genre_name.capitalize() }}"</i></h5>
     </div>
     
     {% if total > 1 %}         <!--Ignore pagination if you get no results-->
@@ -11,7 +11,7 @@
     {{ pagination.links }}
 
     {% if total == 0 %}
-        <h5>No Results Found</h5>
+        <h5>No books in this category</h5>
     {% endif %}
       <!---- Book Card ------->  
     {% for book in books %}
@@ -71,6 +71,7 @@
         </div>
         {% endif %}
     {% endfor %}
-
-{{ pagination.links }}
+<div class= "col s12">
+    {{ pagination.links }}
+</div>
 {% endblock %}

@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
+    <div class= "row header-small">
+        <h5 >Books with search word: <i style= "color: #404040; font-size: 18px">"{{ search_word }}"</i></h5>
+    </div>
+    
+    <!-- Pagination -->
     {% if total > 1 %}         <!--Ignore pagination if you get no results-->
         {{ pagination.info }}
     {% endif %}     
     {{ pagination.links }}
 
-    <div class= "row header-small">
-        <h5 >Books with search word: <i style= "color: #404040; font-size: 18px">"{{ search_word }}"</i></h5>
-    </div>
-
+    <!-- No result message -->
     {% if total == 0 %}
         <h5>No Results Found</h5>
     {% endif %}
@@ -70,6 +72,7 @@
             </div>
         </div>
     {% endfor %}
-
-{{ pagination.links }}
+<div class= "col s12">
+    {{ pagination.links }}
+</div>
 {% endblock %}
