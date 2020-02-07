@@ -158,11 +158,11 @@ def my_lists():
 def insert_list():
     if session.get("username"):
         username = session.get("username")
-        mongo.db.users.update({"username": username},
-                              {'$push':
-                              {'book_list':
-                               {'id': request.form.get('list_name'),
-                                'value': []}}})
+        mongo.db.users.update_one({"username": username},
+                                  {'$push':
+                                   {'book_list':
+                                    {'id': request.form.get('list_name'),
+                                     'value': []}}})
         return redirect(url_for('my_lists'))
 
 # Add new list form
@@ -188,8 +188,12 @@ def update_list(list_id):
 # Delete list from database
 @app.route('/delete_list/<list_id>')
 def delete_list(list_id):
-    mongo.db.lists.delete_one({'_id': ObjectId(list_id)})
-    return redirect(url_for('my_lists'))
+    if session.get("username"):
+        username = session.get("username")
+        mongo.db.users.update_one({'username': username},
+                                  {'$pull': {'book_list': {'id': list_id,
+                                             'value': []}}})
+        return redirect(url_for('my_lists'))
 
 
 @app.route('/showlist/<list_id>')
