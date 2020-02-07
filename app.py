@@ -173,9 +173,12 @@ def add_list():
 # Edit list form
 @app.route('/edit_list/<list_id>')
 def edit_list(list_id):
-    return render_template("edit_list.html", title='Edit List',
-                           list=mongo.db.lists.find_one(
-                               {'_id': ObjectId(list_id)}))
+    if session.get("username"):
+        username = session.get("username")
+        user = mongo.db.users.find_one({'username': username},
+                                       {'book_list.id': list_id})
+        return render_template("edit_list.html", title='Edit List',
+                               user=user, list_id=list_id)
 
 # Send updated list to MongoDB
 @app.route('/update_list/<list_id>', methods=['POST'])

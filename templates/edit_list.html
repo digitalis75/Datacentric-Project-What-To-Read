@@ -8,11 +8,16 @@
 
 <!---- Form ------->
 <div class="row">
-    <form action= "{{ url_for('update_list', list_id=list._id) }}" method="POST" class="addlist-form col s12">
+    <form action= "{{ url_for('update_list', list_id=list_id) }}" method="POST" class="addlist-form col s12">
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons faded prefix">mode_edit</i>
-                <input placeholder="List Name, e.g. Wish List" id="list_name" name="list_name" type="text" class="validate valign-wrapper" value= "{{ list.list_name }}">
+                {% for list in user.book_list %}
+                    {% if list.id == list_id %}
+                    <input placeholder="List Name, e.g. Wish List" id="list_name" name="list_name" type="text" 
+                    class="validate valign-wrapper" value= "{{ list.id }}">
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
             <!---- Submit button ------->
