@@ -183,10 +183,13 @@ def edit_list(list_id):
 # Send updated list to MongoDB
 @app.route('/update_list/<list_id>', methods=['POST'])
 def update_list(list_id):
-    mongo.db.lists.update_one(
-        {'_id': ObjectId(list_id)},
-        {'$set': {'list_name': request.form.get('list_name')}})
-    return redirect(url_for('my_lists'))
+    if session.get("username"):
+        username = session.get("username")
+        mongo.db.users.update_one(
+            {'username': username,
+             'book_list.id': list_id},
+            {'$set': {'book_list.$.id': request.form.get('list_name')}})
+        return redirect(url_for('my_lists'))
 
 # Delete list from database
 @app.route('/delete_list/<list_id>')
