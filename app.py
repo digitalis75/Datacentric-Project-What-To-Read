@@ -110,12 +110,14 @@ def search_results():
                             css_framework='foundation',
                             record_name='results')
 
+    username = session.get("username")
+
     return render_template("get_books.html", title='Search Results',
-                           lists=list(mongo.db.lists.find()),
+                           user=mongo.db.users.find_one(
+                               {'username': username}),
                            search_results=search_results,
                            search_word=search_word,
-                           pagination=pagination,
-                           total=total)
+                           pagination=pagination, total=total)
 
 # Show search results by genre
 @app.route('/books_by_genre/<genre_id>', methods=['GET', 'POST'])
@@ -138,10 +140,14 @@ def books_by_genre(genre_id):
                             bs_version=4,
                             css_framework='foundation',
                             record_name='results')
+
+    username = session.get("username")
+
     return render_template("books_by_genre.html", title='Search Results',
                            genre=mongo.db.genres.find_one(
                                {'_id': ObjectId(genre_id)}),
-                           lists=list(mongo.db.lists.find()),
+                           user=mongo.db.users.find_one(
+                               {'username': username}),
                            pagination=pagination,
                            total=total, books=books)
 
@@ -201,25 +207,32 @@ def delete_list(list_id):
                                              'value': []}}})
         return redirect(url_for('my_lists'))
 
+# Add book to list
+@app.route('/add_book_to_list')
+def add_book_to_list():
+    return ''
 
+# Show books in a list
 @app.route('/showlist/<list_id>')
 def showlist(list_id):
-    return render_template("show_list.html",
-                           list=mongo.db.lists.find_one(
-                               {'_id': ObjectId(list_id)}))
+    if session.get("username"):
+        username = session.get("username")
+        user = mongo.db.users.find_one({'username': username},
+                                       {'book_list.id': list_id})
+        return render_template("show_list.html", user=user)
 
 
-@app.route('/insert_book', methods=['POST'])
-def insert_book():
-    books = mongo.db.books
-    books.insert_one(request.form.to_dict())
-    return redirect(url_for('add_book'))
+# @app.route('/insert_book', methods=['POST'])
+# def insert_book():
+#     books = mongo.db.books
+#     books.insert_one(request.form.to_dict())
+#     return redirect(url_for('add_book'))
 
 
-@app.route('/add_book')
-def add_book():
-    return render_template("add_book.html", title='Add Book',
-                           genres=mongo.db.genres.find())
+# @app.route('/add_book')
+# def add_book():
+#     return render_template("add_book.html", title='Add Book',
+#                            genres=mongo.db.genres.find())
 
 
 if __name__ == '__main__':
