@@ -39,18 +39,25 @@
                         <div id="modal_{{ result._id }}" class="modal modal-fixed-footer">
                             <div class="modal-content">                          
                                 <p>Add or Remove <strong>{{ result.title }}</strong> by <strong>{{ result.author }}</strong> to your lists</p>                               
-                                <!--Material Lists checkboxes --> 
-                                {% for list in user.book_list %}                            
-                                <div class="form-check">   
-                                    <input class="form-check-input" type="checkbox" name= "list_name" value="{{ list.id }}" id="{{ list.id }}_{{ result._id }}">
-                                    <label class="form-check-label" for="{{ list.id }}_{{ result._id }}">                              
-                                        {{ list.id }}                           
-                                    </label>                            
-                                </div>
-                                {% endfor %}                 
-                            </div>
+                                <!--Material Lists checkboxes -->
+                                {% for list in user.book_list %}
+                                <form action= "{{ url_for('insert_book_into_list', list_id=list.id, book_id=result._id) }}" method = "POST">
+                                    <div class="form-check">   
+                                        <input class="form-check-input" type="checkbox" name= "list_name" value="{{ list.id }}" id="{{ list.id }}_{{ result._id }}">
+                                        <label class="form-check-label" for="{{ list.id }}_{{ result._id }}">                              
+                                            {{ list.id }}                           
+                                        </label>                            
+                                    </div>
+                                {% endfor %}
+                                    <div class="row center">
+                                        <button class="btn waves-effect waves-light action-btn action-btn-submit" type="submit" name="action">Add to List
+                                            <i class="material-icons left">playlist_add</i>
+                                        </button>
+                                    </div>
+                                </form> 
+                            </div>  
                             <div class="modal-footer">
-                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">ADD</a>
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">CLOSE</a>
                             </div>
                         </div>
                         {% else %}

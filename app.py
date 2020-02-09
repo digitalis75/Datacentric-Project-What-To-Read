@@ -157,7 +157,9 @@ def my_lists():
     if session.get("username"):
         username = session.get("username")
         return render_template("my_lists.html", title='My Lists',
-                               user=mongo.db.users.find_one({'username': username}))
+                               user=mongo.db.users.find_one(
+                                   {'username': username}),
+                               book=mongo.db.books.find())
 
 # Insert new list
 @app.route('/insert_list', methods=['POST'])
@@ -207,14 +209,20 @@ def delete_list(list_id):
                                              'value': []}}})
         return redirect(url_for('my_lists'))
 
-# Add book to list
-@app.route('/add_book_to_list')
-def add_book_to_list():
-    return ''
+# Insert book into list in MongoDB
+@app.route('/insert_book_into_list/<list_id>/<book_id>', methods=['POST'])
+def insert_book_into_list(list_id, book_id):
+    if session.get("username"):
+        username = session.get("username")
+        mongo.db.users.update_one(
+            {'username': username,
+             'book_list.id':  request.form.get('list_name')},
+            {'$push': {'book_list.$.value': book_id}})
+        return redirect(url_for('my_lists'))
 
 # Show books in a list
-@app.route('/showlist/<list_id>')
-def showlist(list_id):
+@app.route('/show_list/<list_id>')
+def show_list(list_id):
     if session.get("username"):
         username = session.get("username")
         user = mongo.db.users.find_one({'username': username},
