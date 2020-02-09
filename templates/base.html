@@ -7,7 +7,7 @@
     {% if title %}
         <title>{{ title }} | WTR</title>
     {% else %}
-        <title>{{ list.list_name }} List | WTR</title>
+        <title> {% block title %}{% endblock title %} | WTR</title>
     {% endif %}
     
     <!--Materialize Icons-->
@@ -74,8 +74,6 @@
         <div class= "row">
             {% if title %}
                 <h3 class= "center">{{ title }}</h3>
-            {% else %}
-                <h3 class= "center">{{ list.list_name }}</h3>
             {% endif %}
             
             {% block content %}
