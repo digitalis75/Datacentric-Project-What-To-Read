@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, request,\
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
-from flask_paginate import Pagination, get_page_parameter
+from flask_paginate import Pagination, get_page_parameter, get_page_args
 
 if path.exists("env.py"):
     import env
@@ -243,8 +243,31 @@ def show_list(list_id):
                 for item in obj["value"]:
                     book = mongo.db.books.find_one({"_id": ObjectId(item)})
                     books.append(book)
+
+        # Pagination
+        def get_books(offset=0, per_page=4):
+            return books[offset: offset + per_page]
+
+        page, per_page, offset = get_page_args(page_parameter='page',
+                                               per_page_parameter='per_page')
+        per_page = 4
+        offset = (page - 1) * per_page
+
+        total = len(books)
+        pagination_books = get_books(offset=offset, per_page=per_page)
+
+        pagination = Pagination(page=page, per_page=per_page,
+                                total=total, offset=offset,
+                                bs_version=4,
+                                css_framework='foundation',
+                                record_name='results')
+
         return render_template("show_list.html", user=user,
-                               list_id=list_id, results=books)
+                               pagination=pagination,
+                               page=page, per_page=per_page,
+                               offset=offset,
+                               list_id=list_id, results=pagination_books,
+                               total=total)
 
 # Delete book from list in database
 @app.route('/delete_book/<list_id>/<book_id>')

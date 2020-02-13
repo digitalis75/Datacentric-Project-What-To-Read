@@ -8,14 +8,22 @@
     <div class="col s12 addlist-btn-row">
         <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-light btn action-btn-back left"><i class="material-icons left">arrow_back_ios</i>Back to Lists</a>
     </div>    
-   
+    <!-- Heading -->
     {% for list in user.book_list %}
         {% if list.id == list_id %}
             <div class= "col s12">
                 <h3 class= "center">{{ list.id }}</h3>
             </div>    
         {% endif %}
-    {% endfor %}        
+    {% endfor %}
+
+    <!-- Pagination -->
+    {% if total > 1 %}         <!--Ignore pagination if you get no results-->
+        {{ pagination.info }}
+    {% endif %}     
+    {{ pagination.links }}
+
+    <!-- Show books in a list -->
     {% for result in results %}
             <div class="col s12 m6">  
                 <div class="card horizontal show_card">
@@ -37,5 +45,7 @@
                 </div>
             </div>
     {% endfor %}     
-
+<div class= "col s12">
+    {{ pagination.links }}
+</div>
 {% endblock %}
