@@ -214,11 +214,19 @@ def delete_list(list_id):
 def insert_book_into_list(list_id, book_id):
     if session.get("username"):
         username = session.get("username")
-        mongo.db.users.update_one(
-            {'username': username,
-             'book_list.id':  request.form.get('list_name')},
-            {'$push': {'book_list.$.value': book_id}})
-        return redirect(url_for('my_lists'))
+        user = mongo.db.users.find_one({'username': username})
+
+        for obj in user['book_list']:
+            if obj["id"] == request.form.get('list_name'):
+                if book_id not in obj['value']:
+                    mongo.db.users.update_one(
+                        {'username': username,
+                            'book_list.id':  request.form.get('list_name')},
+                        {'$push': {'book_list.$.value': book_id}})
+                else:
+                    flash("This book is already in a list!", 'error')
+                    return redirect(url_for('my_page'))
+                return redirect(url_for('my_lists'))
 
 # Show books in a list
 @app.route('/show_list/<list_id>')
