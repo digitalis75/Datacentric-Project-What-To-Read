@@ -246,6 +246,15 @@ def show_list(list_id):
         return render_template("show_list.html", user=user,
                                list_id=list_id, results=books)
 
+# Delete book from list in database
+@app.route('/delete_book/<list_id>/<book_id>')
+def delete_book(list_id, book_id):
+    if session.get("username"):
+        username = session.get("username")
+        mongo.db.users.update_one({'username': username,
+                                   'book_list.id': list_id},
+                                  {'$pull': {'book_list.$.value': book_id}})
+        return redirect(url_for('show_list', list_id=list_id))
 
 # @app.route('/insert_book', methods=['POST'])
 # def insert_book():
