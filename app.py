@@ -225,9 +225,15 @@ def insert_book_into_list(list_id, book_id):
 def show_list(list_id):
     if session.get("username"):
         username = session.get("username")
-        user = mongo.db.users.find_one({'username': username},
-                                       {'book_list.id': list_id})
-        return render_template("show_list.html", user=user)
+        user = mongo.db.users.find_one({'username': username})
+        books = []
+        for obj in user["book_list"]:
+            if obj["id"] == list_id:
+                for item in obj["value"]:
+                    book = mongo.db.books.find_one({"_id": ObjectId(item)})
+                    books.append(book)
+        return render_template("show_list.html", user=user,
+                               list_id=list_id, results=books)
 
 
 # @app.route('/insert_book', methods=['POST'])

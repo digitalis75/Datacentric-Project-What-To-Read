@@ -12,7 +12,7 @@
 {% for list in user.book_list %}
 <div class="row lists-list-row valign-wrapper">
         <div class="col s10 m11 ">
-            <a href="" class="list-item">{{ list.id }}</a>
+            <a href="{{ url_for('show_list', list_id=list.id) }}" class="list-item">{{ list.id }}</a>
         </div>
         {% if list.id != "Books I Liked" %}     
             <!-- Action buttons -->
