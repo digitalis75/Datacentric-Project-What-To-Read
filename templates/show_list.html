@@ -3,17 +3,15 @@
 {% block title %} My Lists {% endblock title %}
 
 {% block content %}
- 
-<div class="row">
    
     <!-- Back to Lists button -->
-    <div class="col m12 addlist-btn-row">
+    <div class="col s12 addlist-btn-row">
         <a href= "{{ url_for('my_lists') }}" class="waves-effect waves-light btn action-btn-back left"><i class="material-icons left">arrow_back_ios</i>Back to Lists</a>
     </div>    
    
     {% for list in user.book_list %}
         {% if list.id == list_id %}
-            <div class= "row">
+            <div class= "col s12">
                 <h3 class= "center">{{ list.id }}</h3>
             </div>    
         {% endif %}
@@ -32,12 +30,12 @@
                             <p></p>
                         </div>
                         <div class="card-action card-link">
-                            <a href="{{ result.amazon }}" target="_blank">Info/Buy</a>
-                            <a  href="">Remove</a>                        
+                            <a class= "waves-effect waves-light btn btn-small btn-lg info-btn" href="{{ result.amazon }}" target="_blank">Info/Buy</a>
+                            <a class= "waves-effect waves-light btn btn-small btn-lg" href="">Remove</a>                        
                         </div>
                     </div>
                 </div>
             </div>
     {% endfor %}     
-</div>
+
 {% endblock %}

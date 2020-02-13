@@ -48,16 +48,6 @@ div.card-action.card-link {
     padding: 5px;
 }
 
-.btn-small {
-    height: 24px;
-    width: 60px;
-    line-height: 24px;
-    margin: 5px;
-    padding: 0px;
-    text-transform: capitalize;
-    font-size: 10px;
-}
-
 .info-btn {
     background-color: #ffab40;
 }
@@ -220,5 +210,29 @@ div.row.header-small {
    .logo {
     width: 187px;
     height: 56px;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .btn-small {
+    height: 24px;
+    width: 60px;
+    line-height: 24px;
+    margin: 5px;
+    padding: 0px;
+    text-transform: capitalize;
+    font-size: 10px;
+    }
+} 
+
+@media screen and (min-width:1201px) {
+    .btn-lg {
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    margin: 5px;
+    padding: 0px;
+    text-transform: capitalize;
+    font-size: 14px;
     }
 }
