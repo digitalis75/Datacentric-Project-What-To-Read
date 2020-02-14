@@ -171,6 +171,7 @@ def insert_list():
                                    {'book_list':
                                     {'id': request.form.get('list_name'),
                                      'value': []}}})
+        flash('New list successfully created', 'success')
         return redirect(url_for('my_lists'))
 
 # Add new list form
