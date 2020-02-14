@@ -18,33 +18,43 @@
     {% endfor %}
 
     <!-- Pagination -->
+    <div class= "col s12">
     {% if total > 1 %}         <!--Ignore pagination if you get no results-->
         {{ pagination.info }}
     {% endif %}     
     {{ pagination.links }}
+    </div>
+
+    {% if total == 0 %}
+    <div class="no-books-list center col s12">
+        <img class = "image" src = "{{url_for('static', filename='images/read-image.jpg')}}" , alt="people read">
+        <h5>This list has no books in it.</h5>
+        <h5>Search for books <a class = "link" href = "{{ url_for('my_page') }}">here</a></h5>
+    </div>  
+    {% endif %}
 
     <!-- Show books in a list -->
     {% for result in results %}
-            <div class="col s12 m6">  
-                <div class="card horizontal show_card">
-                    <div class="card-image">
-                        <img class="show_card_image" src="{{ result.image_url }}">
+        <div class="col s12 m6">  
+            <div class="card horizontal show_card">
+                <div class="card-image">
+                    <img class="show_card_image" src="{{ result.image_url }}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <h6><strong>{{ result.title }}</strong></h6>
+                        <h6><i> by {{ result.author }}</i></h6>
+                        <p>Genre:<a href="#"> {{ result.genre_name }}</a></p>
+                        <p></p>
                     </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <h6><strong>{{ result.title }}</strong></h6>
-                            <h6><i> by {{ result.author }}</i></h6>
-                            <p>Genre:<a href="#"> {{ result.genre_name }}</a></p>
-                            <p></p>
-                        </div>
-                        <div class="card-action card-link">
-                            <a class= "waves-effect waves-light btn btn-small btn-lg info-btn" href="{{ result.amazon }}" target="_blank">Info/Buy</a>
-                            <a class= "waves-effect waves-light btn btn-small btn-lg" href="{{ url_for('delete_book', list_id=list_id, book_id=result._id) }}">Remove</a>                        
-                        </div>
+                    <div class="card-action card-link">
+                        <a class= "waves-effect waves-light btn btn-small btn-lg info-btn" href="{{ result.amazon }}" target="_blank">Info/Buy</a>
+                        <a class= "waves-effect waves-light btn btn-small btn-lg" href="{{ url_for('delete_book', list_id=list_id, book_id=result._id) }}">Remove</a>                        
                     </div>
                 </div>
             </div>
-    {% endfor %}     
+        </div>
+    {% endfor %}        
 <div class= "col s12">
     {{ pagination.links }}
 </div>

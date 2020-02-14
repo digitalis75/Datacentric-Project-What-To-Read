@@ -205,6 +205,35 @@ div.row.header-small {
     color: #ff6600;
 }
 
+/* ----- Show list ------- */
+.no-books-list {
+    background-color: #fff;
+    height: 340px;
+    width: 100%;
+    border: 1px solid #919090;
+    /* border: 1px solid #ffab40; */
+    border-radius: 5px;
+    color: #727171;
+}
+
+div.no-books-list { /* ----- Shadow effect from w3schools.com ----- */
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+img.image {
+    margin: 10px;
+}
+
+.link {
+    color: #ff3c00;
+}
+
+.link-active {
+   color: #fc7a23; 
+}
+
 /* --------- Responsive ---------- */
 @media screen and (max-width:768px) {
    .logo {

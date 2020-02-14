@@ -9,4 +9,9 @@ $( document ).ready(function(){
     $(".action-btn-back").hover(function(){
         $(this).toggleClass("action-btn-back-active");
     });
+
+    // Jquery for link in show_list.html page
+    $(".link").hover(function(){
+        $(this).toggleClass("link-active");
+    });
 })
