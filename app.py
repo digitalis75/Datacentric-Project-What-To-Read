@@ -166,13 +166,27 @@ def my_lists():
 def insert_list():
     if session.get("username"):
         username = session.get("username")
-        mongo.db.users.update_one({"username": username},
-                                  {'$push':
-                                   {'book_list':
-                                    {'id': request.form.get('list_name'),
-                                     'value': []}}})
-        flash('New list successfully created', 'success')
-        return redirect(url_for('my_lists'))
+        user = mongo.db.users.find_one({'username': username})
+
+        list_name = request.form.get('list_name')
+
+        existingList = []
+        for obj in user["book_list"]:
+            existingList.append(obj["id"])
+
+        if list_name not in existingList:
+            mongo.db.users.update_one({"username": username},
+                                      {'$push':
+                                      {'book_list':
+                                       {'id': list_name,
+                                        'value': []}}})
+            flash('New list successfully created', 'success')
+            return redirect(url_for('my_lists'))
+        else:
+            flash("This list name is already exists! Try again.",
+                  'error')
+            return redirect(url_for('add_list'))
+    return redirect(url_for('my_page'))
 
 # Add new list form
 @app.route('/add_list')
