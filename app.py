@@ -219,9 +219,9 @@ def update_list(list_id):
 def delete_list(list_id):
     if session.get("username"):
         username = session.get("username")
-        mongo.db.users.update_one({'username': username},
-                                  {'$pull': {'book_list': {'id': list_id,
-                                             'value': []}}})
+        mongo.db.users.update_one({'username': username,
+                                   'book_list.id': list_id},
+                                  {'$pull': {'book_list': {'id': list_id}}})
         return redirect(url_for('my_lists'))
 
 # Insert book into list in MongoDB
