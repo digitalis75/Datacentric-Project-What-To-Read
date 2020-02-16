@@ -19,7 +19,7 @@
     <!--Style.css file-->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
-<body>
+<body  {% block body %}{% endblock body %}>
     <div class="container-fluid">
         <!--Materialize navbar and dropdown menu-->    
         <nav>
