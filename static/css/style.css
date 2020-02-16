@@ -108,7 +108,6 @@ div.row.header-small {
    background-color: #ffab40; 
 }
 
-
 .action-btn-mypage,
 .action-btn-modal_signin {
     background-color: #fff;
@@ -224,6 +223,12 @@ div.no-books-list { /* ----- Shadow effect from w3schools.com ----- */
 
 img.image {
     margin: 10px;
+}
+
+img.image_1 {
+    width: 190px;
+    height: 190px;
+    margin: 15px;
 }
 
 .link {

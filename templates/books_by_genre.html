@@ -11,7 +11,11 @@
     {{ pagination.links }}
 
     {% if total == 0 %}
-        <h5>No books in this category</h5>
+    <div class="no-books-list center col s12">
+        <img class = "image_1" src = "{{url_for('static', filename='images/read-image_1.jpg')}}", alt="people read">
+        <h5>No books added to this category</h5>
+        <h5>Search for books <a class = "link" href = "{{ url_for('my_page') }}">here</a></h5>
+    </div>  
     {% endif %}
       <!---- Book Card ------->  
     {% for book in books %}
