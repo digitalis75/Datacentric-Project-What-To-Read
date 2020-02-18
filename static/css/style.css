@@ -1,10 +1,7 @@
-body {
-    background-color: #f2f2f2;
-}
-
+body,
 body.register,
 body.login {
-    background-image: url("../images/register-bg-img.jpg");
+    background-image: url("../images/paper-bg.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     -webkit-background-size: cover;
@@ -18,6 +15,10 @@ body.login {
 
 body.login {
     background-image: url("../images/login-bg-img.jpg");
+}
+
+body.register{
+    background-image: url("../images/register-bg-img.jpg");
 }
 
 /* ------------ Navbar ----------- */
@@ -71,7 +72,7 @@ div.card-action.card-link {
 }
 
 div.row.header-small {
-    color: #ffab40;
+    color: #ff6600;
     width: 100%;
     padding: 0 8px;
     margin: 10px 0;
@@ -146,7 +147,7 @@ div.row.header-small {
 }
 
 .faded-text {
-    color: grey;
+    color: rgb(31, 29, 29);
 }
 
 .lists-list-row {
@@ -231,6 +232,7 @@ div.row.header-small {
     /* border: 1px solid #ffab40; */
     border-radius: 5px;
     color: #727171;
+    opacity: 0.7;
 }
 
 div.no-books-list { /* ----- Shadow effect from w3schools.com ----- */
