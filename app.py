@@ -161,6 +161,7 @@ def my_lists():
                                user=mongo.db.users.find_one(
                                    {'username': username}),
                                book=mongo.db.books.find())
+    return redirect(url_for('my_page'))
 
 # Insert new list
 @app.route('/insert_list', methods=['POST'])
@@ -203,6 +204,7 @@ def edit_list(list_id):
                                        {'book_list.id': list_id})
         return render_template("edit_list.html", title='Edit List',
                                user=user, list_id=list_id)
+    return redirect(url_for('my_page'))
 
 # Send updated list to MongoDB
 @app.route('/update_list/<list_id>', methods=['POST'])
@@ -214,6 +216,7 @@ def update_list(list_id):
              'book_list.id': list_id},
             {'$set': {'book_list.$.id': request.form.get('list_name')}})
         return redirect(url_for('my_lists'))
+    return redirect(url_for('my_page'))
 
 # Delete list from database
 @app.route('/delete_list/<list_id>')
@@ -224,6 +227,7 @@ def delete_list(list_id):
                                    'book_list.id': list_id},
                                   {'$pull': {'book_list': {'id': list_id}}})
         return redirect(url_for('my_lists'))
+    return redirect(url_for('my_page'))
 
 # Insert book into list in MongoDB
 @app.route('/insert_book_into_list/<list_id>/<book_id>', methods=['POST'])
@@ -246,6 +250,7 @@ def insert_book_into_list(list_id, book_id):
                     return redirect(url_for('my_page'))
                 return redirect(url_for('show_list',
                                         list_id=list_name))
+    return redirect(url_for('my_page'))
 
 # Show books in a list
 @app.route('/show_list/<list_id>')
@@ -284,6 +289,7 @@ def show_list(list_id):
                                offset=offset,
                                list_id=list_id, results=pagination_books,
                                total=total)
+    return redirect(url_for('my_page'))
 
 # Delete book from list in database
 @app.route('/delete_book/<list_id>/<book_id>')
@@ -294,6 +300,7 @@ def delete_book(list_id, book_id):
                                    'book_list.id': list_id},
                                   {'$pull': {'book_list.$.value': book_id}})
         return redirect(url_for('show_list', list_id=list_id))
+    return redirect(url_for('my_page'))
 
 # @app.route('/insert_book', methods=['POST'])
 # def insert_book():
