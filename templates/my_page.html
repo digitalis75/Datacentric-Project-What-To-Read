@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<!----Search Form ------->
+<!-- Search Form -->
     <form action= "{{ url_for('search_results') }}" method="GET" class="search-form col s12">
         <div>
             <div class="input-field col s12">
@@ -8,7 +8,7 @@
                 <input placeholder="Enter Book Title or Author" id="search" name="search_word" type="text" class="validate valign-wrapper">
             </div>
         </div>
-        <!---- Submit button ------->
+        <!-- Submit button -->
         <div class="row center">
             <button class="btn waves-effect waves-light action-btn action-btn-submit" type="submit" name="action">Search for Books
                 <i class="material-icons left">search</i>
@@ -16,7 +16,7 @@
         </div>
     </form>
    
-    <!---- Genres ------->
+    <!-- Genres -->
     <div class= "row center header-small">
         <h4>Search by Category</h4>
     </div>

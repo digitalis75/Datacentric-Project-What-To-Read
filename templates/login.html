@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block body %} class= "login"{% endblock body %}
 {% block content %}
-    <!---- Form ------->
+    <!-- Form -->
 <div>
     <form action= "{{ url_for('login') }}" method="POST" class="login-form col s12">
         <div class="input-field col s12">
             <input placeholder="Enter Email Address" id="email" name="username" type="text" class="validate valign-wrapper" required>
             <label for="username">Email</label>
         </div>
-            <!---- Submit button ------->
+            <!-- Submit button -->
         <div class="center">
             <button class="btn waves-effect waves-light action-btn action-btn-submit" type="submit">Sign In
             </button>

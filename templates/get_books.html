@@ -15,13 +15,13 @@
     <!-- No result message -->
     {% if total == 0 %}
     <div class="no-books-list center col s12">
-        <img class = "image" src = "{{url_for('static', filename='images/read-image_2.jpg')}}" , alt="people read">
+        <img class = "image" src = "{{url_for('static', filename='images/read-image_2.jpg')}}" alt="people read">
         <h5>No Results Found</h5>
         <h5>Search for books <a class = "link" href = "{{ url_for('my_page') }}">here</a></h5>
     </div>  
     {% endif %}
 
-     <!---- Book Card ------->  
+     <!-- Book Card -->  
     {% for result in search_results %}
     <div class="col s12 m6">  
         <div class="card horizontal show_card">
