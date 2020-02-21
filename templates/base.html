@@ -10,18 +10,18 @@
         <title> {% block title %}{% endblock title %} | WTR</title>
     {% endif %}
     
-    <!--Materialize Icons-->
+    <!-- Materialize Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!--Font Awesome-->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <!--Style.css file-->
+    <!-- Style.css file -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
 <body  {% block body %}{% endblock body %}>
-    <div class="container-fluid">
-        <!--Materialize navbar and dropdown menu-->    
+    <div class="container-fluid content">
+        <!-- Materialize navbar and dropdown menu -->    
         <nav>
             <div class="nav-wrapper my-navbar">
                 <a href="{{ url_for('my_page') }}" class="brand-logo center"><img class= "logo" src="{{url_for('static', filename='images/logo.jpg')}}" alt="logo"></a>
@@ -49,9 +49,8 @@
                 </ul>
             </div>    
         </nav>
-    </div>
-    <!-- Flashed messages  -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- Flashed messages  -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
                     {% if category == 'success' %}
@@ -69,19 +68,46 @@
             {% endif %}
         {% endwith %}
 
-    <div class="container">
-        <!---- Heading ------>
-        <div class= "row">
-            {% if title %}
-                <h3 class= "center">{{ title }}</h3>
-            {% endif %}
-            
-            {% block content %}
-            {% endblock %}
+        <div class="container">
+            <!-- Heading -->
+            <div class= "row">
+                {% if title %}
+                    <h3 class= "center">{{ title }}</h3>
+                {% endif %}
+                
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
-    </div>
-
-    <!--Jquery-->
+    </div>    
+    
+    <!-- Materialize footer -->
+    <div class="container-fluid ">
+        <footer class="page-footer my-footer">
+            <div class="container">
+                <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Contact Us</h5>
+                    <p class="grey-text text-lighten-4">Please contact us if you have any suggestions.</p>
+                    <a class="waves-effect waves-light btn"  href="#" target="_blank">Contact</a></li>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="waves-effect waves-light btn btn-footer"  href="#" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a class="waves-effect waves-light btn btn-footer" href="#" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="footer-copyright my-footer-bottom">
+                <div class="container">
+                WTR © 2020
+                </div>
+            </div>
+        </footer>
+    </div>      
+    <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- Materialize Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

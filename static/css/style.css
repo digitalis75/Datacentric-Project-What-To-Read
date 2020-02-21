@@ -4,13 +4,9 @@ body.login {
     background-image: url("../images/paper-bg.jpg");
     background-repeat: no-repeat;
     background-position: center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     justify-content: center;
     position: relative;
-    height: 100vh; 
 }
 
 body.login {
@@ -21,9 +17,18 @@ body.register{
     background-image: url("../images/register-bg-img.jpg");
 }
 
-/* ------------ Navbar ----------- */
-.my-navbar {
+.content {
+    min-height: 100vh;
+}
+
+/* ------------ Navbar and Footer----------- */
+.my-navbar,
+.my-footer {
     background-color: #404040;
+}
+
+div.footer-copyright.my-footer-bottom {
+    background-color: #3b3b3b;
 }
 
 .logo {
@@ -38,6 +43,10 @@ body.register{
 .nav-button-signout {
     color: #fff;
     margin-top: 0px;
+}
+
+.btn-footer {
+    margin: 10px;
 }
 
 /* --------Alerts---------- */
@@ -55,7 +64,6 @@ body.register{
     margin: 0;
     padding: 10px 0;
 }
-
 
 /* --------- Get books --------------- */
 
@@ -84,7 +92,6 @@ div.row.header-small {
   padding: 0 5px;  
 }
 
-
 /* ---------Pagination -----------
 ----from flask-paginate documentation-- */
 .pagination-page-info {
@@ -96,6 +103,7 @@ div.row.header-small {
     margin-left: 0;
     font-size: 12px;
 }
+
 .pagination-page-info b {
     color: black;
     /* customized background-color */
