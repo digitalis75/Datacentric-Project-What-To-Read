@@ -54,7 +54,7 @@ def login():
         flash('Welcome back! You are logged in.', 'success')
         return redirect(url_for('my_page'))
     else:
-        flash('No account found for that email address.\
+        flash('No account found for that username.\
         Please, try again or Sign Up.', 'error')
         return redirect(url_for('signin'))
 
@@ -71,6 +71,7 @@ def register():
                               'book_list': [{'id': 'Books I Liked',
                                              'value': []}]})
             session['username'] = request.form['username']
+            flash('You were successfully registered and logged in.', 'success')
             return redirect(url_for('my_page'))
 
         flash('That username already exists! Try again or Sign In', 'error')
