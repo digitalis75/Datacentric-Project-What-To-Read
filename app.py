@@ -174,9 +174,9 @@ def insert_list():
 
         existingList = []
         for obj in user["book_list"]:
-            existingList.append(obj["id"])
+            existingList.append(obj["id"].lower())
 
-        if list_name not in existingList:
+        if list_name.lower() not in existingList:
             mongo.db.users.update_one({"username": username},
                                       {'$push':
                                       {'book_list':
