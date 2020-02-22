@@ -15,7 +15,7 @@
                 {% for list in user.book_list %}
                     {% if list.id == list_id %}
                     <input placeholder="List Name, e.g. Wish List" id="list_name" name="list_name" type="text" 
-                    class="validate valign-wrapper" value= "{{ list.id }}">
+                    class="validate valign-wrapper" value= "{{ list.id }}" required>
                     {% endif %}
                 {% endfor %}
             </div>
