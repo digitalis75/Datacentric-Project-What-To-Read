@@ -97,10 +97,11 @@ def search_results():
     # Search by word
     search_word = request.args.get("search_word")
     search_results = mongo.db.books.find(
-                {"$text":
-                    {"$search": search_word}}).sort('_id', 1)\
-                                              .skip((page-1)*per_page)\
-                                              .limit(per_page)
+                {"$text": {"$search": search_word, "$language": 'en'}},
+                {"score": {"$meta": "textScore"}}
+                    ).sort([("score", {"$meta": "textScore"})])\
+                     .skip((page-1)*per_page)\
+                     .limit(per_page)
     # Total of search results
     total = search_results.count()
     # Pagination
