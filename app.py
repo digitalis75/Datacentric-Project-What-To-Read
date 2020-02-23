@@ -264,7 +264,7 @@ def show_list(list_id):
             if obj["id"] == list_id:
                 for item in obj["value"]:
                     book = mongo.db.books.find_one({"_id": ObjectId(item)})
-                    books.append(book)
+                    books.insert(0, book)
 
         # Pagination
         def get_books(offset=0, per_page=4):
