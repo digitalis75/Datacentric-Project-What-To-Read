@@ -43,7 +43,7 @@
                         {%  if "username" in session %}
                         <div id="modal_{{ result._id }}" class="modal modal-fixed-footer">
                             <div class="modal-content">                          
-                                <p>Add or Remove <strong>{{ result.title }}</strong> by <strong>{{ result.author }}</strong> to your lists</p>                               
+                                <p>Add <strong>{{ result.title }}</strong> by <strong>{{ result.author }}</strong> to your lists</p>                               
                                 <!--Material Lists checkboxes -->
                                 {% for list in user.book_list %}
                                 <form action= "{{ url_for('insert_book_into_list', list_id=list.id, book_id=result._id) }}" method = "POST">
