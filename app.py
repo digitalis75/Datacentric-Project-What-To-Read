@@ -47,7 +47,8 @@ def signup():
 # User login
 @app.route('/login', methods=['POST'])
 def login():
-    login_user = mongo.db.users.find_one({'username': request.form['username']})
+    login_user = mongo.db.users.find_one(
+        {'username': request.form['username']})
     # Log in existing user
     if login_user:
         session['username'] = request.form['username']
@@ -303,17 +304,31 @@ def delete_book(list_id, book_id):
         return redirect(url_for('show_list', list_id=list_id))
     return redirect(url_for('my_page'))
 
-# @app.route('/insert_book', methods=['POST'])
-# def insert_book():
-#     books = mongo.db.books
-#     books.insert_one(request.form.to_dict())
-#     return redirect(url_for('add_book'))
+# Admin area
+@app.route('/admin')
+def admin():
+    if session.get("username"):
+        username = session.get("username")
+        if username == "haziran@live.ie":
+            return render_template('add_book.html')
+    return redirect(url_for('my_page'))
 
+# Add book form
+@app.route('/add_book')
+def add_book():
+    return render_template("add_book.html", title='Add Book',
+                           genres=mongo.db.genres.find())
 
-# @app.route('/add_book')
-# def add_book():
-#     return render_template("add_book.html", title='Add Book',
-#                            genres=mongo.db.genres.find())
+# Insert new book into the MongoDB
+@app.route('/insert_book', methods=['POST'])
+def insert_book():
+    if session.get("username"):
+        username = session.get("username")
+        if username == "haziran@live.ie":
+            books = mongo.db.books
+            books.insert_one(request.form.to_dict())
+            flash("New book successfully added to database", 'success')
+            return redirect(url_for('add_book'))
 
 
 if __name__ == '__main__':
