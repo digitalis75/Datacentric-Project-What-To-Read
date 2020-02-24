@@ -329,6 +329,7 @@ def insert_book():
             books.insert_one(request.form.to_dict())
             flash("New book successfully added to database", 'success')
             return redirect(url_for('add_book'))
+    return redirect(url_for('my_page'))
 
 
 if __name__ == '__main__':
