@@ -72,7 +72,7 @@ div.footer-copyright.my-footer-bottom {
 }
 
 div.card-action.card-link {
-    padding: 5px;
+    padding: 0px;
 }
 
 .info-btn {
@@ -118,8 +118,8 @@ div.row.header-small {
     margin: 0;
 }
 
-.addlist-btn-row {
-    margin: 15px 0;
+div.row.addlist-btn-row {
+    margin: 10px;
 }
 
 .action-btn,
@@ -127,7 +127,7 @@ div.row.header-small {
 .action-btn-mypage,
 .list-action-btn {
     padding: 0 10px;
-    margin: 0 5px;
+    margin: 10px 10px 0 0;
     text-transform: capitalize;
 }
 
@@ -162,7 +162,8 @@ div.row.header-small {
     background-color: #fff; 
     height: 70px;   
     border: 1px solid #d9d9d9; 
-    border-radius: 5px; 
+    border-radius: 5px;
+    margin: 5px 0; 
 }
 
 .lists-list-row-active {
@@ -203,6 +204,10 @@ div.row.header-small {
     border: 1px solid #d9d9d9; 
     border-radius: 5px;
     margin: 25px 0;
+}
+
+form.addlist-form {
+    margin: 25px 10px;
 }
 
 .search-form {

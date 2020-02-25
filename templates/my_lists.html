@@ -10,7 +10,7 @@
 
 <!-- Searching for list names in user's record -->
 {% for list in user.book_list %}
-<div class="row lists-list-row valign-wrapper">
+<div class="lists-list-row valign-wrapper">
         <div class="col s10 m11 ">
             <a href="{{ url_for('show_list', list_id=list.id) }}" class="list-item">{{ list.id }}</a>
         </div>
