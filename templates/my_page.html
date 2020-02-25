@@ -21,7 +21,7 @@
         <h4>Search by Category</h4>
     </div>
     {% for genre in genres %}
-    <div class="col s12 m3">
+    <div class="col s12 m6 l3">
         <div class="row center">
             <a href= "{{ url_for('books_by_genre', genre_id=genre._id) }}" class="waves-effect waves-light btn action-btn-mypage" >{{ genre.genre_name }}</a>
         </div>   

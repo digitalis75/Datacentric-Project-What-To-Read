@@ -23,7 +23,7 @@
 
      <!-- Book Card -->  
     {% for result in search_results %}
-    <div class="col s12 m6">  
+    <div class="col s12 m10 l6">  
         <div class="card horizontal show_card">
             <div class="card-image">
                 <img class="show_card_image" src="{{ result.image_url }}">
@@ -36,9 +36,9 @@
                     <p></p>
                 </div>
                 <div class="card-action card-link">
-                    <a class="waves-effect waves-light btn btn-small btn-lg info-btn" href="{{ result.amazon }}" target="_blank">Info/Buy</a>
+                    <a class="waves-effect waves-light btn btn-small btn-lg info-btn right" href="{{ result.amazon }}" target="_blank">Info/Buy</a>
                    <!-- Modal Trigger -->
-                        <a id="{{result._id}}" class="waves-effect waves-light btn btn-small btn-lg modal-trigger" href="#modal_{{ result._id }}">Add To List</a>                        
+                        <a id="{{result._id}}" class="waves-effect waves-light btn btn-small btn-lg modal-trigger right" href="#modal_{{ result._id }}">Add To List</a>                        
                          <!-- Material Modal Structure -->                     
                         {%  if "username" in session %}
                         <div id="modal_{{ result._id }}" class="modal modal-fixed-footer">
