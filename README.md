@@ -150,7 +150,7 @@ To run project locally:
   $ pip install -U flask-paginate
 
 * create database in MongoDB.  
-  Check details of database structure [here](database_structure/database_structure.pdf)  
+  Check details of database structure [here](static/database_structure/database_structure.pdf)  
 * set the following environment variables:  
   * os.environ["MONGO_DBNAME"] = "MongoDB Database Name"  
   * os.environ["MONGO_URI"] = "MongoDB Database URI"  
