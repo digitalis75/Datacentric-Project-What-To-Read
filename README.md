@@ -28,27 +28,27 @@ As a user I would like to be able to:
 Wireframes are created in Balsamiq Cloud.
 
 Wireframes for desktop:
- * [my_page.html](wireframes/desktop/my_page_html.jpg)
- * [register.html](wireframes/desktop/register_html.jpg)
- * [login.html](wireframes/desktop/login_html.jpg)
- * [get_books.html](wireframes/desktop/get_books_html.jpg)
- * [books_by_genre.html](wireframes/desktop/books_by_genre_html.jpg)
- * [my_lists.html](wireframes/desktop/my_lists_html.jpg)
- * [add_list.html](wireframes/desktop/add_list_html.jpg)
- * [edit_list.html](wireframes/desktop/edit_list_html.jpg)
- * [show_list.html](wireframes/desktop/show_list_html.jpg)
- * [add_book.html](wireframes/desktop/add_book_html.jpg)
+ * [my_page.html](static/wireframes/desktop/my_page_html.jpg)
+ * [register.html](static/wireframes/desktop/register_html.jpg)
+ * [login.html](static/wireframes/desktop/login_html.jpg)
+ * [get_books.html](static/wireframes/desktop/get_books_html.jpg)
+ * [books_by_genre.html](static/wireframes/desktop/books_by_genre_html.jpg)
+ * [my_lists.html](static/wireframes/desktop/my_lists_html.jpg)
+ * [add_list.html](static/wireframes/desktop/add_list_html.jpg)
+ * [edit_list.html](static/wireframes/desktop/edit_list_html.jpg)
+ * [show_list.html](static/wireframes/desktop/show_list_html.jpg)
+ * [add_book.html](static/wireframes/desktop/add_book_html.jpg)
 
 Wireframes for mobile devices:
- * [my_page.html](wireframes/mobile/mob_my_page.jpg)
- * [register.html](wireframes/mobile/mob_register.jpg)
- * [login.html](wireframes/mobile/mob_login.jpg)
- * [get_books.html](wireframes/mobile/mob_get_books.jpg)
- * [books_by_genre.html](wireframes/mobile/mob_books_by_genre.jpg)
- * [my_lists.html](wireframes/mobile/mob_my_lists.jpg)
- * [add_list.html](wireframes/mobile/mob_add_list.jpg)
- * [edit_list.html](wireframes/mobile/mob_edit_list.jpg)
- * [show_list.html](wireframes/mobile/mob_show_list.jpg)
+ * [my_page.html](static/wireframes/mobile/mob_my_page.jpg)
+ * [register.html](static/wireframes/mobile/mob_register.jpg)
+ * [login.html](static/wireframes/mobile/mob_login.jpg)
+ * [get_books.html](static/wireframes/mobile/mob_get_books.jpg)
+ * [books_by_genre.html](static/wireframes/mobile/mob_books_by_genre.jpg)
+ * [my_lists.html](static/wireframes/mobile/mob_my_lists.jpg)
+ * [add_list.html](static/wireframes/mobile/mob_add_list.jpg)
+ * [edit_list.html](static/wireframes/mobile/mob_edit_list.jpg)
+ * [show_list.html](static/wireframes/mobile/mob_show_list.jpg)
 
 ## Features
 
@@ -67,10 +67,10 @@ Wireframes for mobile devices:
   * Add book to list - allows to registered user to add a book to the list.
   * View books in a list - allows to registered user to view added to a list books.
   * Delete book - allows to registered user to delete a book from a list.
-  * View book info on www.amazon.co.uk - brings user to amazon.co.uk to the books page.
+  * View book info - brings user to amazon.co.uk to the books page.
 * Admin area
   * Insert books into database - only for administrator, allows to insert a book into MongoDB
-* Flash messaging - allowing to see how successful was certain action.
+* Flash messaging - allowing to see how successful was a certain action.
 * Pagination - allows to show search results in pages.
 
 #### Features Left To Implement
@@ -79,30 +79,32 @@ Wireframes for mobile devices:
 * highlight active links in pagination 
 
 ## Technology Used
-* HTML5
-* CSS3
-* JQuery
+* HTML5 (the standard markup language for Web pages.)
+* CSS3 (a language that describes the style of an HTML document)
+* JQuery (a JavaScript Library)
 * Python (a programming language used to create the backend)
 * Flask (a microframework for Python)
 * MongoDB (a NoSQL Database which uses documents to store data)
 * MongoDB Atlas (global cloud database service for modern applications)
-* GitHub
-* gitpod
+* GitHub (a global company which provides hosting for software development version control using Git)
+* gitpod (an online IDE which can be launched from any GitHub page)
 
 ## Testing
-The HTML code was checked with online validator:(https://validator.w3.org/#validate_by_input);  
-The CSS code was checked with online validator: (https://jigsaw.w3.org/css-validator/#validate_by_input);
+The HTML code was checked with online [validator](https://validator.w3.org/#validate_by_input);  
+The CSS code was checked with online [validator](https://jigsaw.w3.org/css-validator/#validate_by_input);  
 The Chrome Developer Tools was used to check website for responsiveness;
 
 I carried out manual tests to check that all features work as expected. These tests are documented in user_testing.pdf and can
-be viewed [here](tests/user_testing.pdf).  
+be viewed [here](static/tests/user_testing.pdf).  
 
-I have also tested my project for responsiveness and on different browsers which is detailed in browser_tests.pdf and can be viewed [here](tests/browser_tests.pdf).
+I have also tested my project for responsiveness and on different browsers which is detailed in browser_tests.pdf and can be viewed [here](static/tests/browser_tests.pdf).
 
 ## Deployment
 
-There are two branches, one is for production and one for development. For development environ variables are set from a file.  For Heroku the environ variables are set in Config Vars in Heroku settings.
-Project was developed in gitpod, and used git and GitHub for version control.
+There are two branches, one is for production and one for development.  
+For development environ variables are set in env.py file.  
+For Heroku the environ variables are set in Config Vars in Heroku settings.  
+The project was developed in gitpod, and used git and GitHub for version control.
 
 ### Heroku
 
@@ -112,9 +114,13 @@ View 'What To Read' [here](https://what-to-read-app.herokuapp.com/).
 To deploy this project I needed to:
 * sign up to Heroku (Heroku.com) and create Heroku app
 * include a Procfile - tells Heroku what type of app it is and what to run  
+  
   $ echo web: python app.py > Procfile
+
 * include a requirements.txt - tells Heroku what dependencies to install  
+  
   $ pip3 freeze -- local > requirements.txt
+
 * in Heroku Settings set the Config Vars for the IP, PORT, MONGO_URI and unique secret key.
 * configure dynos in Heroku.
 * in Heroku Deploy section connect to project GitHub repository and enable automatic deploy from master branch.
@@ -143,10 +149,13 @@ To run project locally:
   or alternatively if you have pip installed:  
   $ pip install -U flask-paginate
 
-* create database in MongoDB and set the following environment variables:  
-  MONGO_URI=[Database URI]  
-  MONGO_DBNAME=[Database Name]  
-  SECRET=[Some key combination]  
+* create database in MongoDB.  
+  Check details of database structure [here](database_structure/database_structure.pdf)  
+* set the following environment variables:  
+  * os.environ["MONGO_DBNAME"] = "MongoDB Database Name"  
+  * os.environ["MONGO_URI"] = "MongoDB Database URI"  
+  * os.environ["SECRET"] = "Some secret string"
+   
 * Run the project  
   $ python3 app.py
 
